@@ -32,12 +32,17 @@ Aplicación web estática y progresiva (PWA / responsive para Web, iOS y Android
   - No requiere servidor ni base de datos externa.
   - Todos los datos de estudio y favoritos se guardan localmente en `localStorage`.
 
-## 🚀 Publicación en GitHub Pages
+## 🚀 Publicación automática en GitHub Pages
 
-Para publicar esta app en GitHub Pages:
-1. Sube el código a tu repositorio de GitHub.
-2. Ejecuta `npm run build` para generar la carpeta estática `dist/`.
-3. En GitHub, ve a **Settings > Pages > Build and deployment**, selecciona la rama donde publiques la carpeta `dist` (o usa la acción predeterminada de Vite para GitHub Pages).
+El repositorio ya incluye el workflow de GitHub Actions en `.github/workflows/deploy.yml`.
+
+Para activarlo en tu repositorio de GitHub:
+1. Sube tu código al repositorio (`git push origin main` o `master`).
+2. En tu repositorio de GitHub, ve a **Settings** > **Pages**.
+3. En la sección **Build and deployment > Source**, selecciona **GitHub Actions** (en lugar de "Deploy from a branch").
+4. ¡Listo! A partir de ese momento, cada commit que hagas en `main` o `master` compilará y desplegará automáticamente la aplicación en `https://<tu-usuario>.github.io/<nombre-repo>/`.
+
+La configuración de Vite ya tiene establecido `base: './'` para que todos los scripts, estilos y recursos carguen correctamente sin importar el nombre del repositorio.
 
 ## 📄 Licencias
 
