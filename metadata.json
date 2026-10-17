@@ -1,0 +1,6 @@
+{
+  "name": "MNN N5 kanji",
+  "description": "Aprende los 218 kanji de Minna no Nihongo N5 con trazos animados SVG de KanjiVG, lecturas onyomi/kunyomi, vocabulario en español y tarjetas flashcards interactivas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
