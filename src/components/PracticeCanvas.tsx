@@ -12,7 +12,7 @@ export const PracticeCanvas: React.FC<PracticeCanvasProps> = ({ kanji, hex }) =>
   const [isDrawing, setIsDrawing] = useState(false);
   const [history, setHistory] = useState<ImageData[]>([]);
   const [showGuide, setShowGuide] = useState(true);
-  const [showNumbers, setShowNumbers] = useState(false);
+  const [showNumbers, setShowNumbers] = useState(true);
   const [strokeWidth, setStrokeWidth] = useState<number>(4); // Fine stroke by default
 
   // KanjiVG guide paths and numbers
@@ -198,16 +198,20 @@ export const PracticeCanvas: React.FC<PracticeCanvasProps> = ({ kanji, hex }) =>
                 </text>
               )}
 
-              {/* Optional stroke numbers on the guide */}
+              {/* Stroke numbers on the guide (enabled by default so students follow the correct order) */}
               {showNumbers && guideNumbers.length > 0 && (
-                <g style={{ fontSize: '7px', fill: '#94a3b8', fontFamily: 'sans-serif', fontWeight: 600 }}>
+                <g style={{ fontSize: '7.5px', fill: '#e11d48', fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 700 }}>
                   {guideNumbers.map((num, i) => (
                     <text
                       key={`guide-num-${i}`}
                       transform={num.transform}
                       x={num.transform ? undefined : num.x}
                       y={num.transform ? undefined : num.y}
-                      fill="#94a3b8"
+                      fill="#e11d48"
+                      stroke="#ffffff"
+                      strokeWidth="1.2px"
+                      paintOrder="stroke"
+                      strokeLinejoin="round"
                     >
                       {num.text}
                     </text>

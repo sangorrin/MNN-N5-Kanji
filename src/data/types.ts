@@ -30,5 +30,5 @@ export interface LessonGroup {
   };
 }
 
-export type StudyMode = 'kanji' | 'flashcards';
-export type FlashcardSubMode = 'imi' | 'hatsuon' | 'tango';
+export type StudyMode = 'kanji' | 'flashcards' | 'sentensu';
+export type FlashcardSubMode = 'imi' | 'hatsuon' | 'tango' | 'sentensu';

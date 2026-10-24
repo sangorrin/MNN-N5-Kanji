@@ -23,6 +23,18 @@
   }
 }
 
+ruby {
+  ruby-align: center;
+  ruby-position: over;
+  text-align: center;
+}
+
+rt {
+  ruby-align: center;
+  text-align: center;
+  user-select: none;
+}
+
 body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: #fcfbfa;

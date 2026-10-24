@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { KanjiItem } from '../data/types';
 import { getKanjiHex } from '../data';
+import { MNN_SENTENCES } from '../data/sentences';
 import { KanjiSvgPlayer } from './KanjiSvgPlayer';
 import { PracticeCanvas } from './PracticeCanvas';
 import {
@@ -280,6 +281,80 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
             ))}
           </div>
         </div>
+
+        {/* Oraciones de ejemplo de Minna no Nihongo */}
+        {(() => {
+          const sentences = MNN_SENTENCES.filter((s) => s.targetKanji?.includes(kanji.kanji));
+          if (sentences.length === 0) return null;
+
+          return (
+            <div className="mt-8 pt-6 border-t border-slate-100">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                  <span>Oraciones de ejemplo (Minna no Nihongo)</span>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-rose-50 text-rose-700">
+                    文型・例文
+                  </span>
+                </h2>
+                <span className="text-xs text-slate-500">
+                  {sentences.length} {sentences.length === 1 ? 'frase' : 'frases'}
+                </span>
+              </div>
+
+              <div className="space-y-3">
+                {sentences.map((s) => (
+                  <div
+                    key={s.id}
+                    className="p-4 rounded-2xl bg-amber-50/40 border border-amber-200/60 flex items-start justify-between gap-3"
+                  >
+                    <div className="space-y-1">
+                      <div className="text-xs font-semibold text-rose-700">
+                        {s.lessonNumber} · {s.section}
+                      </div>
+                      <div className="text-base sm:text-lg font-medium text-slate-900 font-japanese flex flex-wrap items-end gap-y-1">
+                        {s.segments.map((seg, sIdx) => {
+                          if (seg.furigana) {
+                            return (
+                              <ruby
+                                key={sIdx}
+                                className="inline-flex flex-col items-center justify-end align-bottom mx-[2px] leading-none"
+                              >
+                                <rt className="text-[10px] text-rose-600 font-normal leading-none pb-0.5 select-none text-center block">
+                                  {seg.furigana}
+                                </rt>
+                                <span className="leading-tight">{seg.text}</span>
+                              </ruby>
+                            );
+                          }
+                          return (
+                            <span key={sIdx} className="leading-tight">
+                              {seg.text}
+                            </span>
+                          );
+                        })}
+                      </div>
+                      <div className="text-xs text-slate-500 italic">{s.romaji}</div>
+                      <div className="text-xs sm:text-sm text-slate-700 font-medium">
+                        {s.spanish}
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        playSoftClick();
+                        speakJapanese(s.japaneseText);
+                      }}
+                      className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-white transition-colors shrink-0"
+                      title="Pronunciación"
+                    >
+                      <Volume2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );

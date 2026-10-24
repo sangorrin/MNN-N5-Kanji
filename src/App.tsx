@@ -16,6 +16,7 @@ import { LessonSelector } from './components/LessonSelector';
 import { KanjiCard, getPastelStyle } from './components/KanjiCard';
 import { KanjiDetailView } from './components/KanjiDetailView';
 import { FlashcardsView } from './components/FlashcardsView';
+import { SentensuView } from './components/SentensuView';
 import { TermsPrivacyModal } from './components/TermsPrivacyModal';
 import {
   RotateCcw,
@@ -43,6 +44,7 @@ export default function App() {
   const [soundEnabled, setSoundEnabledState] = useState<boolean>(true);
   const [showTermsModal, setShowTermsModal] = useState<boolean>(false);
   const [showResetConfirm, setShowResetConfirm] = useState<boolean>(false);
+  const [returnToMode, setReturnToMode] = useState<StudyMode | null>(null);
 
   // Initialize from localStorage
   useEffect(() => {
@@ -107,8 +109,9 @@ export default function App() {
     );
   }, [selectedLessonId]);
 
-  // Handle Kanji Selection (increment counter & go to detail)
+  // Handle Kanji Selection (speak pronunciation, increment counter & go to detail)
   const handleSelectKanji = (kanji: KanjiItem) => {
+    playSoftClick();
     const updatedCount = incrementStudyCount(kanji.id);
     setStudyCounts((prev) => ({ ...prev, [kanji.id]: updatedCount }));
     setSelectedKanji(kanji);
@@ -118,6 +121,21 @@ export default function App() {
   const handleToggleFavorite = (kanjiId: number) => {
     toggleFavorite(kanjiId);
     setFavorites(getFavorites());
+  };
+
+  // Select kanji by character (e.g. clicked from Sentensu "Kanji de la lección" chips)
+  const handleSelectKanjiByChar = (char: string) => {
+    const found = ALL_KANJI.find((k) => k.kanji === char);
+    if (found) {
+      if (currentMode !== 'kanji') {
+        setReturnToMode(currentMode);
+        setCurrentMode('kanji');
+      }
+      if (selectedLessonId !== 'all' && found.lessonId !== selectedLessonId) {
+        setSelectedLessonId(found.lessonId);
+      }
+      handleSelectKanji(found);
+    }
   };
 
   // Reset lesson study progress
@@ -144,6 +162,7 @@ export default function App() {
   const handlePrevKanji = () => {
     if (currentKanjiIndex > 0) {
       const nextKanji = displayedKanji[currentKanjiIndex - 1];
+      playSoftClick();
       const updatedCount = incrementStudyCount(nextKanji.id);
       setStudyCounts((prev) => ({ ...prev, [nextKanji.id]: updatedCount }));
       setSelectedKanji(nextKanji);
@@ -153,6 +172,7 @@ export default function App() {
   const handleNextKanji = () => {
     if (currentKanjiIndex < displayedKanji.length - 1) {
       const nextKanji = displayedKanji[currentKanjiIndex + 1];
+      playSoftClick();
       const updatedCount = incrementStudyCount(nextKanji.id);
       setStudyCounts((prev) => ({ ...prev, [nextKanji.id]: updatedCount }));
       setSelectedKanji(nextKanji);
@@ -195,7 +215,13 @@ export default function App() {
             studyCount={studyCounts[selectedKanji.id] || 0}
             isFavorite={favorites.includes(selectedKanji.id)}
             onToggleFavorite={handleToggleFavorite}
-            onBack={() => setSelectedKanji(null)}
+            onBack={() => {
+              setSelectedKanji(null);
+              if (returnToMode) {
+                setCurrentMode(returnToMode);
+                setReturnToMode(null);
+              }
+            }}
             onPrevKanji={handlePrevKanji}
             onNextKanji={handleNextKanji}
             hasPrev={currentKanjiIndex > 0}
@@ -302,6 +328,11 @@ export default function App() {
               <FlashcardsView
                 kanjiList={displayedKanji}
                 lessonTitle={currentLessonGroup.title}
+              />
+            ) : currentMode === 'sentensu' ? (
+              <SentensuView
+                currentLesson={currentLessonGroup}
+                onSelectKanji={handleSelectKanjiByChar}
               />
             ) : (
               /* Mode: KANJI LIST */

@@ -98,13 +98,28 @@ export const Header: React.FC<HeaderProps> = ({
               onSelectMode('flashcards');
             }}
             className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
-              currentMode === 'flashcards'
+              currentMode === 'flashcards' && !onlyFavorites
                 ? 'bg-white text-rose-700 shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Sparkles size={14} />
             <span>Flashcards</span>
+          </button>
+
+          <button
+            onClick={() => {
+              playSoftClick();
+              onSelectMode('sentensu');
+            }}
+            className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
+              currentMode === 'sentensu' && !onlyFavorites
+                ? 'bg-white text-rose-700 shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span className="font-serif font-bold text-xs">文</span>
+            <span>Sentensu</span>
           </button>
 
           <button

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { KanjiItem, FlashcardSubMode } from '../data/types';
+import { MNN_SENTENCES, SentenceItem } from '../data/sentences';
 import {
   Shuffle,
   RotateCcw,
@@ -26,6 +27,8 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [deck, setDeck] = useState<KanjiItem[]>(kanjiList);
   const [tangoExampleIndex, setTangoExampleIndex] = useState<number>(0);
+  const [sentenceExampleIndex, setSentenceExampleIndex] = useState<number>(0);
+  const [showFurigana, setShowFurigana] = useState<boolean>(true);
 
   // Sync deck when kanjiList changes
   useEffect(() => {
@@ -33,10 +36,21 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
     setCurrentIndex(0);
     setIsFlipped(false);
     setTangoExampleIndex(0);
+    setSentenceExampleIndex(0);
   }, [kanjiList]);
 
   // Current Card
   const currentCard = deck[currentIndex] || deck[0];
+
+  // Find sentences matching this kanji or lesson
+  const matchingSentences = useMemo(() => {
+    if (!currentCard) return [];
+    const direct = MNN_SENTENCES.filter((s) => s.targetKanji?.includes(currentCard.kanji));
+    if (direct.length > 0) return direct;
+    return MNN_SENTENCES.filter((s) => s.lessonId === currentCard.lessonId);
+  }, [currentCard]);
+
+  const currentSentence = matchingSentences[sentenceExampleIndex] || matchingSentences[0];
 
   // Flip card
   const handleFlip = useCallback(() => {
@@ -50,6 +64,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
       playSoftClick();
       setIsFlipped(false);
       setTangoExampleIndex(0);
+      setSentenceExampleIndex(0);
       setCurrentIndex((prev) => prev + 1);
     }
   }, [currentIndex, deck.length]);
@@ -60,6 +75,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
       playSoftClick();
       setIsFlipped(false);
       setTangoExampleIndex(0);
+      setSentenceExampleIndex(0);
       setCurrentIndex((prev) => prev - 1);
     }
   }, [currentIndex]);
@@ -76,6 +92,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
     setCurrentIndex(0);
     setIsFlipped(false);
     setTangoExampleIndex(0);
+    setSentenceExampleIndex(0);
   };
 
   // Reset to original order
@@ -85,6 +102,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
     setCurrentIndex(0);
     setIsFlipped(false);
     setTangoExampleIndex(0);
+    setSentenceExampleIndex(0);
   };
 
   // Keyboard navigation
@@ -126,14 +144,14 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
 
   return (
     <div className="w-full max-w-lg mx-auto flex flex-col items-center pb-12 animate-in fade-in duration-200">
-      {/* Submode Switcher: Imi, Hatsuon, Tango */}
-      <div className="flex items-center gap-1.5 p-1 bg-slate-100/90 rounded-2xl mb-6 shadow-2xs">
+      {/* Submode Switcher: Imi, Hatsuon, Tango, Sentensu */}
+      <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 bg-slate-100/90 rounded-2xl mb-6 shadow-2xs">
         <button
           onClick={() => {
             setSubMode('imi');
             setIsFlipped(false);
           }}
-          className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
+          className={`px-3 sm:px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
             subMode === 'imi'
               ? 'bg-white text-rose-700 shadow-xs'
               : 'text-slate-600 hover:text-slate-900'
@@ -146,7 +164,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
             setSubMode('hatsuon');
             setIsFlipped(false);
           }}
-          className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
+          className={`px-3 sm:px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
             subMode === 'hatsuon'
               ? 'bg-white text-rose-700 shadow-xs'
               : 'text-slate-600 hover:text-slate-900'
@@ -159,13 +177,26 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
             setSubMode('tango');
             setIsFlipped(false);
           }}
-          className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
+          className={`px-3 sm:px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
             subMode === 'tango'
               ? 'bg-white text-rose-700 shadow-xs'
               : 'text-slate-600 hover:text-slate-900'
           }`}
         >
           Tango (Vocabulario)
+        </button>
+        <button
+          onClick={() => {
+            setSubMode('sentensu');
+            setIsFlipped(false);
+          }}
+          className={`px-3 sm:px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
+            subMode === 'sentensu'
+              ? 'bg-white text-rose-700 shadow-xs'
+              : 'text-slate-600 hover:text-slate-900'
+          }`}
+        >
+          Sentensu (Frases)
         </button>
       </div>
 
@@ -234,12 +265,16 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
                   ? 'Significado (意味)'
                   : subMode === 'hatsuon'
                   ? 'Pronunciación (発音)'
-                  : 'Vocabulario (単語)'}
+                  : subMode === 'tango'
+                  ? 'Vocabulario (単語)'
+                  : 'Oración MNN (文・文型)'}
               </span>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (subMode === 'tango') {
+                  if (subMode === 'sentensu' && currentSentence?.japaneseText) {
+                    speakJapanese(currentSentence.japaneseText);
+                  } else if (subMode === 'tango') {
                     speakJapanese(currentExample.reading || currentExample.kanji);
                   } else {
                     speakJapanese(currentCard.kanji);
@@ -341,6 +376,89 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
                       >
                         (Ver siguiente)
                       </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* SENTENSU MODE */}
+              {subMode === 'sentensu' && (
+                <div className="flex flex-col items-center gap-2 w-full text-center">
+                  {currentSentence ? (
+                    <>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 border border-rose-100">
+                          {currentSentence.lessonNumber} · {currentSentence.section}
+                        </span>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setShowFurigana(!showFurigana);
+                          }}
+                          className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors"
+                          title="Alternar lectura furigana"
+                        >
+                          Furigana: {showFurigana ? 'ON' : 'OFF'}
+                        </button>
+                      </div>
+
+                      {/* Japanese sentence with centered ruby */}
+                      <div className="text-lg sm:text-xl font-medium text-slate-900 leading-relaxed font-japanese select-text my-1 flex flex-wrap items-end justify-center gap-y-1">
+                        {currentSentence.segments.map((seg, sIdx) => {
+                          if (seg.furigana) {
+                            return (
+                              <ruby
+                                key={sIdx}
+                                className="inline-flex flex-col items-center justify-end align-bottom mx-[2px] leading-none"
+                              >
+                                {showFurigana && (
+                                  <rt className="text-[10px] sm:text-[11px] font-normal text-rose-600 leading-none pb-1 select-none text-center block">
+                                    {seg.furigana}
+                                  </rt>
+                                )}
+                                <span className="leading-tight">{seg.text}</span>
+                              </ruby>
+                            );
+                          }
+                          return (
+                            <span key={sIdx} className="leading-tight">
+                              {seg.text}
+                            </span>
+                          );
+                        })}
+                      </div>
+
+                      {/* Romaji */}
+                      <div className="text-xs text-slate-500 italic font-sans">
+                        {currentSentence.romaji}
+                      </div>
+
+                      {/* Spanish */}
+                      <div className="text-xs sm:text-sm text-slate-800 font-medium bg-amber-50/70 p-2 rounded-xl border border-amber-100 mt-1 max-w-sm">
+                        {currentSentence.spanish}
+                      </div>
+
+                      {/* Multiple sentence switcher */}
+                      {matchingSentences.length > 1 && (
+                        <div
+                          className="flex items-center gap-1.5 mt-2 text-[11px] text-slate-400"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <span>Frase {sentenceExampleIndex + 1} de {matchingSentences.length}</span>
+                          <button
+                            onClick={() =>
+                              setSentenceExampleIndex((prev) => (prev + 1) % matchingSentences.length)
+                            }
+                            className="text-xs text-rose-600 hover:underline font-semibold ml-1"
+                          >
+                            (Ver otra frase)
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="text-sm text-slate-500 py-4">
+                      No hay frase registrada para este kanji en esta lección.
                     </div>
                   )}
                 </div>
