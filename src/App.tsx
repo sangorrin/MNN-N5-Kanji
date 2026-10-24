@@ -5,7 +5,6 @@ import {
   getStudyCounts,
   incrementStudyCount,
   resetLessonStudyCounts,
-  resetAllStudyCounts,
   getFavorites,
   toggleFavorite,
 } from './utils/storage';
@@ -19,12 +18,6 @@ import { TermsPrivacyModal } from './components/TermsPrivacyModal';
 import {
   RotateCcw,
   Search,
-  Sparkles,
-  BookOpen,
-  Palette,
-  ShieldCheck,
-  Heart,
-  HelpCircle,
   X,
   AlertCircle,
 } from 'lucide-react';
@@ -105,9 +98,7 @@ export default function App() {
     );
   }, [selectedLessonId]);
 
-  // Handle Kanji Selection (speak pronunciation, increment counter & go to detail)
   const handleSelectKanji = (kanji: KanjiItem) => {
-    playSoftClick();
     const updatedCount = incrementStudyCount(kanji.id);
     setStudyCounts((prev) => ({ ...prev, [kanji.id]: updatedCount }));
     setSelectedKanji(kanji);

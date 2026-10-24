@@ -341,7 +341,6 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
 
                     <button
                       onClick={() => {
-                        playSoftClick();
                         speakJapanese(s.japaneseText);
                       }}
                       className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-white transition-colors shrink-0"

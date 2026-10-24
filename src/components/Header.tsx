@@ -64,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({
         <nav className="flex items-center justify-between sm:justify-start gap-1 p-1 bg-slate-100/90 rounded-2xl w-full sm:w-auto">
           <button
             onClick={() => {
-              playSoftClick();
+              //playSoftClick();
               onSelectMode('kanji');
             }}
             className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
@@ -94,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => {
-              playSoftClick();
+              //playSoftClick();
               onSelectMode('sentensu');
             }}
             className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
@@ -109,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => {
-              playSoftClick();
+              //playSoftClick();
               onToggleFavoritesFilter();
             }}
             className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${

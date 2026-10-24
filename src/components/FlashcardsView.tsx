@@ -54,7 +54,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
 
   // Flip card
   const handleFlip = useCallback(() => {
-    playFlipSound();
+    //playFlipSound();
     setIsFlipped((prev) => !prev);
   }, []);
 
@@ -126,6 +126,36 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleFlip, handleNext, handlePrev]);
 
+  const currentExample = currentCard
+    ? currentCard.examples[tangoExampleIndex] || currentCard.examples[0] || {
+        kanji: currentCard.kanji,
+        reading: currentCard.kunyomi[0] || currentCard.onyomi[0] || '',
+        romaji: '',
+        meaning: currentCard.meaning,
+      }
+    : { kanji: '', reading: '', romaji: '', meaning: '' };
+
+  const speechText = !currentCard
+    ? ''
+    : !isFlipped
+    ? currentCard.kanji
+    : subMode === 'sentensu' && currentSentence?.japaneseText
+    ? currentSentence.japaneseText
+    : subMode === 'tango'
+    ? currentExample.reading || currentExample.kanji
+    : currentCard.kanji;
+  const speechKey = currentCard
+    ? isFlipped
+      ? `${currentCard.id}:${subMode}:${tangoExampleIndex}:${sentenceExampleIndex}`
+      : `${currentCard.id}:front`
+    : 'empty';
+
+  useEffect(() => {
+    if (speechText) {
+      speakJapanese(speechText);
+    }
+  }, [speechKey, speechText]);
+
   if (!currentCard) {
     return (
       <div className="text-center py-16 text-slate-400">
@@ -133,14 +163,6 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
       </div>
     );
   }
-
-  const currentExample =
-    currentCard.examples[tangoExampleIndex] || currentCard.examples[0] || {
-      kanji: currentCard.kanji,
-      reading: currentCard.kunyomi[0] || currentCard.onyomi[0] || '',
-      romaji: '',
-      meaning: currentCard.meaning,
-    };
 
   return (
     <div className="w-full max-w-lg mx-auto flex flex-col items-center pb-12 animate-in fade-in duration-200">
@@ -218,16 +240,16 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
 
       {/* 3D Flip Flashcard */}
       <div
-        className="w-full h-80 sm:h-96 cursor-pointer select-none perspective-1000"
+        className="w-full cursor-pointer select-none perspective-1000"
         onClick={handleFlip}
       >
         <div
-          className={`relative w-full h-full duration-500 transform-style-3d transition-transform rounded-3xl ${
+          className={`relative grid w-full duration-500 transform-style-3d transition-transform rounded-3xl ${
             isFlipped ? 'rotate-y-180' : ''
           }`}
         >
           {/* FRONT (Anverso - Siempre el Kanji) */}
-          <div className="absolute inset-0 backface-hidden bg-white border-2 border-slate-200/90 rounded-3xl p-6 shadow-sm hover:shadow-md flex flex-col justify-between items-center transition-all bg-gradient-to-b from-white via-white to-rose-50/20">
+          <div className="col-start-1 row-start-1 min-h-80 sm:min-h-96 backface-hidden bg-white border-2 border-slate-200/90 rounded-3xl p-6 shadow-sm hover:shadow-md flex flex-col justify-between items-center transition-all bg-gradient-to-b from-white via-white to-rose-50/20">
             {/* Top metadata */}
             <div className="w-full flex items-center justify-between text-xs text-slate-400">
               <span className="font-medium">N5 · {currentCard.strokes} trazos</span>
@@ -257,9 +279,9 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
           </div>
 
           {/* BACK (Reverso - Depende del modo: Imi / Hatsuon / Tango) */}
-          <div className="absolute inset-0 backface-hidden rotate-y-180 bg-white border-2 border-rose-200/90 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-center bg-gradient-to-b from-rose-50/30 via-white to-rose-50/30">
+          <div className="col-start-1 row-start-1 min-h-80 sm:min-h-96 backface-hidden rotate-y-180 bg-white border-2 border-rose-200/90 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-center bg-gradient-to-b from-rose-50/30 via-white to-rose-50/30">
             {/* Top metadata */}
-            <div className="w-full flex items-center justify-between text-xs text-slate-400">
+            <div className="w-full flex shrink-0 items-center justify-between text-xs text-slate-400">
               <span className="font-medium">
                 {subMode === 'imi'
                   ? 'Significado (意味)'
@@ -288,11 +310,11 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
             </div>
 
             {/* Center Content depending on submode */}
-            <div className="flex flex-col items-center justify-center my-auto w-full px-2 text-center">
+            <div className="flex w-full shrink-0 flex-col items-center justify-center px-2 py-2 text-center">
               {/* IMI MODE */}
               {subMode === 'imi' && (
-                <div className="flex flex-col items-center gap-3">
-                  <span className="text-2xl sm:text-3xl font-bold text-slate-900">
+                <div className="my-auto flex w-full shrink-0 flex-col items-center gap-3">
+                  <span className="max-w-full break-words text-2xl sm:text-3xl font-bold text-slate-900">
                     {currentCard.meaning}
                   </span>
                   <div className="text-xs text-slate-500 flex flex-wrap justify-center gap-2 mt-1">
@@ -312,14 +334,14 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
 
               {/* HATSUON MODE */}
               {subMode === 'hatsuon' && (
-                <div className="flex flex-col items-center gap-3 w-full">
+                <div className="my-auto flex shrink-0 flex-col items-center gap-3 w-full">
                   <div className="w-full space-y-2">
                     {currentCard.onyomi.length > 0 && (
                       <div className="p-2.5 bg-rose-50/70 border border-rose-100 rounded-xl">
                         <div className="text-[10px] font-semibold text-rose-700 uppercase tracking-wider mb-0.5">
                           On'yomi (音読み)
                         </div>
-                        <div className="text-lg font-bold text-slate-900">
+                        <div className="break-words text-lg font-bold text-slate-900">
                           {currentCard.onyomi.join(' · ')}
                         </div>
                       </div>
@@ -330,7 +352,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
                         <div className="text-[10px] font-semibold text-sky-700 uppercase tracking-wider mb-0.5">
                           Kun'yomi (訓読み)
                         </div>
-                        <div className="text-lg font-bold text-slate-900">
+                        <div className="break-words text-lg font-bold text-slate-900">
                           {currentCard.kunyomi.join(' · ')}
                         </div>
                       </div>
@@ -345,17 +367,17 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
 
               {/* TANGO MODE */}
               {subMode === 'tango' && (
-                <div className="flex flex-col items-center gap-2 w-full">
-                  <span className="text-3xl sm:text-4xl font-serif font-bold text-slate-900">
+                <div className="my-auto flex shrink-0 flex-col items-center gap-2 w-full">
+                  <span className="max-w-full break-words text-3xl sm:text-4xl font-serif font-bold text-slate-900">
                     {currentExample.kanji}
                   </span>
-                  <span className="text-base font-semibold text-rose-600">
+                  <span className="max-w-full break-words text-base font-semibold text-rose-600">
                     {currentExample.reading}
                   </span>
-                  <span className="text-xs font-mono text-slate-400">
+                  <span className="max-w-full break-words text-xs font-mono text-slate-400">
                     {currentExample.romaji}
                   </span>
-                  <span className="text-sm font-medium text-slate-700 mt-2 bg-slate-100/80 px-3 py-1 rounded-lg">
+                  <span className="max-w-full break-words text-sm font-medium text-slate-700 mt-2 bg-slate-100/80 px-3 py-1 rounded-lg">
                     {currentExample.meaning}
                   </span>
 
@@ -383,7 +405,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
 
               {/* SENTENSU MODE */}
               {subMode === 'sentensu' && (
-                <div className="flex flex-col items-center gap-2 w-full text-center">
+                <div className="my-auto flex shrink-0 flex-col items-center gap-2 w-full text-center">
                   {currentSentence ? (
                     <>
                       <div className="flex items-center gap-2 mb-1">
@@ -403,25 +425,25 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
                       </div>
 
                       {/* Japanese sentence with centered ruby */}
-                      <div className="text-lg sm:text-xl font-medium text-slate-900 leading-relaxed font-japanese select-text my-1 flex flex-wrap items-end justify-center gap-y-1">
+                      <div className="max-w-full break-words text-lg sm:text-xl font-medium text-slate-900 leading-relaxed font-japanese select-text my-1 flex flex-wrap items-end justify-center gap-y-1">
                         {currentSentence.segments.map((seg, sIdx) => {
                           if (seg.furigana) {
                             return (
                               <ruby
                                 key={sIdx}
-                                className="inline-flex flex-col items-center justify-end align-bottom mx-[2px] leading-none"
+                                className="inline-flex max-w-full flex-col items-center justify-end align-bottom mx-[2px] leading-none"
                               >
                                 {showFurigana && (
                                   <rt className="text-[10px] sm:text-[11px] font-normal text-rose-600 leading-none pb-1 select-none text-center block">
                                     {seg.furigana}
                                   </rt>
                                 )}
-                                <span className="leading-tight">{seg.text}</span>
+                                <span className="max-w-full break-words leading-tight">{seg.text}</span>
                               </ruby>
                             );
                           }
                           return (
-                            <span key={sIdx} className="leading-tight">
+                            <span key={sIdx} className="max-w-full break-words leading-tight">
                               {seg.text}
                             </span>
                           );
@@ -429,12 +451,12 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
                       </div>
 
                       {/* Romaji */}
-                      <div className="text-xs text-slate-500 italic font-sans">
+                      <div className="max-w-full break-words text-xs text-slate-500 italic font-sans">
                         {currentSentence.romaji}
                       </div>
 
                       {/* Spanish */}
-                      <div className="text-xs sm:text-sm text-slate-800 font-medium bg-amber-50/70 p-2 rounded-xl border border-amber-100 mt-1 max-w-sm">
+                      <div className="w-full max-w-sm break-words text-xs sm:text-sm text-slate-800 font-medium bg-amber-50/70 p-2 rounded-xl border border-amber-100 mt-1">
                         {currentSentence.spanish}
                       </div>
 
@@ -466,7 +488,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
             </div>
 
             {/* Flip back hint */}
-            <div className="text-xs font-medium text-slate-400">
+            <div className="shrink-0 text-xs font-medium text-slate-400">
               Toca para volver a ver el kanji
             </div>
           </div>

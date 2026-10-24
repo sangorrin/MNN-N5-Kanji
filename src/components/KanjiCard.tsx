@@ -1,7 +1,7 @@
 import React from 'react';
 import { KanjiItem } from '../data/types';
 import { Volume2 } from 'lucide-react';
-import { speakJapanese, playSoftClick } from '../utils/audio';
+import { speakJapanese } from '../utils/audio';
 
 interface KanjiCardProps {
   kanji: KanjiItem;
@@ -58,7 +58,7 @@ export const KanjiCard: React.FC<KanjiCardProps> = ({
   const style = getPastelStyle(studyCount, pastelHue);
 
   const handleClick = () => {
-    playSoftClick();
+    speakJapanese(kanji.kanji);
     onSelect(kanji);
   };
 
