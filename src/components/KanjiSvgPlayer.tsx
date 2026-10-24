@@ -1,19 +1,6 @@
-import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Eye, EyeOff, Hash, Grid } from 'lucide-react';
-
-interface StrokePath {
-  id: string;
-  d: string;
-  type?: string;
-  length?: number;
-}
-
-interface StrokeNumber {
-  text: string;
-  x: number;
-  y: number;
-  transform?: string;
-}
+import React, { useEffect, useState, useRef } from 'react';
+import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Hash, Grid } from 'lucide-react';
+import { fetchKanjiSvg, StrokePath, StrokeNumber } from '../utils/kanjiSvg';
 
 interface KanjiSvgPlayerProps {
   kanji: string;
@@ -21,9 +8,6 @@ interface KanjiSvgPlayerProps {
   strokesCount: number;
   onStrokeComplete?: () => void;
 }
-
-// In-memory cache for fetched SVG content
-const svgCache = new Map<string, string>();
 
 export const KanjiSvgPlayer: React.FC<KanjiSvgPlayerProps> = ({
   kanji,
@@ -54,78 +38,23 @@ export const KanjiSvgPlayer: React.FC<KanjiSvgPlayerProps> = ({
     setCurrentStroke(0);
     setStrokeProgress(0);
 
-    const parseSvg = (svgText: string) => {
-      try {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(svgText, 'image/svg+xml');
-
-        // Extract paths in order
-        const pathElements = doc.querySelectorAll('g[id^="kvg:StrokePaths"] path, path[id*="-s"]');
-        const parsedPaths: StrokePath[] = [];
-
-        pathElements.forEach((p, idx) => {
-          const d = p.getAttribute('d') || '';
-          const id = p.getAttribute('id') || `stroke-${idx + 1}`;
-          const type = p.getAttribute('kvg:type') || '';
-          if (d) {
-            parsedPaths.push({ id, d, type });
-          }
-        });
-
-        // Extract numbers
-        const textElements = doc.querySelectorAll('g[id^="kvg:StrokeNumbers"] text, text');
-        const parsedNumbers: StrokeNumber[] = [];
-
-        textElements.forEach((t) => {
-          const text = t.textContent?.trim() || '';
-          const transform = t.getAttribute('transform') || '';
-          const x = parseFloat(t.getAttribute('x') || '0');
-          const y = parseFloat(t.getAttribute('y') || '0');
-          if (text) {
-            parsedNumbers.push({ text, x, y, transform });
-          }
-        });
-
+    fetchKanjiSvg(hex)
+      .then(({ paths, numbers }) => {
         if (!isCancelled) {
-          if (parsedPaths.length > 0) {
-            setPaths(parsedPaths);
-            setNumbers(parsedNumbers);
+          if (paths.length > 0) {
+            setPaths(paths);
+            setNumbers(numbers);
             setLoading(false);
             setIsPlaying(true);
           } else {
-            throw new Error('No paths found in SVG');
+            setError('No se encontraron trazos');
+            setLoading(false);
           }
         }
-      } catch (err) {
-        if (!isCancelled) {
-          console.warn('KanjiVG SVG parsing error, using fallback:', err);
-          setError('No se pudo cargar el SVG animado');
-          setLoading(false);
-        }
-      }
-    };
-
-    if (svgCache.has(hex)) {
-      parseSvg(svgCache.get(hex)!);
-      return;
-    }
-
-    const primaryUrl = `https://cdn.jsdelivr.net/gh/KanjiVG/kanjivg@master/kanji/${hex}.svg`;
-    const fallbackUrl = `https://raw.githubusercontent.com/KanjiVG/kanjivg/master/kanji/${hex}.svg`;
-
-    fetch(primaryUrl)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.text();
-      })
-      .catch(() => fetch(fallbackUrl).then((r) => r.text()))
-      .then((text) => {
-        svgCache.set(hex, text);
-        if (!isCancelled) parseSvg(text);
       })
       .catch((err) => {
         if (!isCancelled) {
-          console.warn('Failed to fetch KanjiVG SVG:', err);
+          console.warn('Failed to fetch/parse KanjiVG SVG:', err);
           setError('No disponible sin conexión');
           setLoading(false);
         }

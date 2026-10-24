@@ -179,7 +179,7 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
               strokesCount={kanji.strokes}
             />
           ) : (
-            <PracticeCanvas kanji={kanji.kanji} />
+            <PracticeCanvas kanji={kanji.kanji} hex={hex} />
           )}
         </div>
 
