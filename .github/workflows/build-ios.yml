@@ -1,0 +1,60 @@
+name: Build iOS
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build web assets
+        run: npm run build
+
+      - name: Add and Sync iOS platform
+        run: |
+          npx cap add ios || true
+          npx cap sync ios
+
+      - name: Build iOS App (Archive unsigned)
+        working-directory: ios/App
+        run: |
+          xcodebuild -scheme App -workspace App.xcworkspace -configuration Release -destination 'generic/platform=iOS' -archivePath build/App.xcarchive archive CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
+
+      - name: Package iOS App
+        run: |
+          mkdir -p Payload
+          cp -r ios/App/build/App.xcarchive/Products/Applications/App.app Payload/
+          zip -r MNN-N5-Kanji-ios-unsigned.ipa Payload
+          zip -r MNN-N5-Kanji-ios-app.zip ios/App/build/App.xcarchive/Products/Applications/App.app
+
+      - name: Upload iOS artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: MNN-N5-Kanji-ios
+          path: |
+            MNN-N5-Kanji-ios-unsigned.ipa
+            MNN-N5-Kanji-ios-app.zip
+
+      - name: Attach iOS to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            MNN-N5-Kanji-ios-unsigned.ipa
+            MNN-N5-Kanji-ios-app.zip
