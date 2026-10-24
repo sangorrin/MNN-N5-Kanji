@@ -3,8 +3,6 @@ import { StudyMode } from '../data/types';
 import {
   BookOpen,
   Sparkles,
-  Volume2,
-  VolumeX,
   ShieldCheck,
   Star,
 } from 'lucide-react';
@@ -13,8 +11,6 @@ import { playSoftClick } from '../utils/audio';
 interface HeaderProps {
   currentMode: StudyMode;
   onSelectMode: (mode: StudyMode) => void;
-  soundEnabled: boolean;
-  onToggleSound: () => void;
   onOpenTerms: () => void;
   onlyFavorites: boolean;
   onToggleFavoritesFilter: () => void;
@@ -24,8 +20,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   currentMode,
   onSelectMode,
-  soundEnabled,
-  onToggleSound,
   onOpenTerms,
   onlyFavorites,
   onToggleFavoritesFilter,
@@ -35,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-3 sm:px-6 py-2.5 sm:py-3.5 select-none shadow-2xs">
       {/* Container: On mobile stacks in two neat rows (Title & Actions on top, Mode tabs below) */}
       <div className="w-full max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-4">
-        
+
         {/* Row 1 in mobile: Brand Title on left + Sound & Privacy on right */}
         <div className="flex items-center justify-between w-full sm:w-auto">
           {/* Brand Wordmark */}
@@ -55,15 +49,6 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Quick Actions in Mobile Row 1 */}
           <div className="flex sm:hidden items-center gap-1">
-            <button
-              onClick={onToggleSound}
-              className="p-1.5 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
-              title={soundEnabled ? 'Silenciar sonidos' : 'Activar sonidos'}
-              aria-label="Alternar sonido"
-            >
-              {soundEnabled ? <Volume2 size={17} /> : <VolumeX size={17} />}
-            </button>
-
             <button
               onClick={onOpenTerms}
               className="p-1.5 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
@@ -138,17 +123,8 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </nav>
 
-        {/* Desktop-only actions (Sound, Privacy) */}
+        {/* Desktop-only actions (Privacy) */}
         <div className="hidden sm:flex items-center gap-1.5 shrink-0">
-          <button
-            onClick={onToggleSound}
-            className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
-            title={soundEnabled ? 'Silenciar sonidos' : 'Activar sonidos'}
-            aria-label="Alternar sonido"
-          >
-            {soundEnabled ? <Volume2 size={17} /> : <VolumeX size={17} />}
-          </button>
-
           <button
             onClick={onOpenTerms}
             className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors"

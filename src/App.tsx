@@ -8,8 +8,6 @@ import {
   resetAllStudyCounts,
   getFavorites,
   toggleFavorite,
-  getSoundEnabled,
-  setSoundEnabled,
 } from './utils/storage';
 import { Header } from './components/Header';
 import { LessonSelector } from './components/LessonSelector';
@@ -41,7 +39,6 @@ export default function App() {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [onlyFavorites, setOnlyFavorites] = useState<boolean>(false);
   const [pastelHue, setPastelHue] = useState<'sakura' | 'matcha' | 'lavender' | 'sky'>('sakura');
-  const [soundEnabled, setSoundEnabledState] = useState<boolean>(true);
   const [showTermsModal, setShowTermsModal] = useState<boolean>(false);
   const [showResetConfirm, setShowResetConfirm] = useState<boolean>(false);
   const [returnToMode, setReturnToMode] = useState<StudyMode | null>(null);
@@ -50,7 +47,6 @@ export default function App() {
   useEffect(() => {
     setStudyCounts(getStudyCounts());
     setFavorites(getFavorites());
-    setSoundEnabledState(getSoundEnabled());
   }, []);
 
   // Filter kanji according to lesson, search, and favorites
@@ -146,13 +142,6 @@ export default function App() {
     setShowResetConfirm(false);
   };
 
-  // Sound toggle
-  const handleToggleSound = () => {
-    const next = !soundEnabled;
-    setSoundEnabled(next);
-    setSoundEnabledState(next);
-  };
-
   // Navigation inside detail view (prev / next)
   const currentKanjiIndex = useMemo(() => {
     if (!selectedKanji) return -1;
@@ -194,8 +183,6 @@ export default function App() {
           setSelectedKanji(null);
           setCurrentMode(mode);
         }}
-        soundEnabled={soundEnabled}
-        onToggleSound={handleToggleSound}
         onOpenTerms={() => setShowTermsModal(true)}
         onlyFavorites={onlyFavorites}
         onToggleFavoritesFilter={() => {
