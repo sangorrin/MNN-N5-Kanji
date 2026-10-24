@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Volume2, BookOpen, ToggleLeft, ToggleRight, Sparkles, ArrowRight } from 'lucide-react';
 import { SentenceItem, MNN_SENTENCES } from '../data/sentences';
 import { LessonGroup } from '../data/types';
+import { getKanjiByLesson } from '../data';
 import { speakJapanese } from '../utils/audio';
 
 interface SentensuViewProps {
@@ -15,6 +16,7 @@ export const SentensuView: React.FC<SentensuViewProps> = ({ currentLesson, onSel
 
   // Filter sentences for the active lesson group
   const sentences = MNN_SENTENCES.filter((s) => s.lessonId === currentLesson.id);
+  const lessonKanji = new Set(getKanjiByLesson(currentLesson.id).map((item) => item.kanji));
 
   const handlePlaySentence = (s: SentenceItem) => {
     setPlayingId(s.id);
@@ -80,8 +82,9 @@ export const SentensuView: React.FC<SentensuViewProps> = ({ currentLesson, onSel
       <div className="space-y-4">
         {sentences.map((s, idx) => {
           const isPlaying = playingId === s.id;
-          // Strictly filter targetKanji so only kanji present in japaneseText are displayed
-          const validKanji = (s.targetKanji || []).filter((k) => s.japaneseText.includes(k));
+          const validKanji = [...new Set(s.targetKanji || [])].filter(
+            (kanji) => lessonKanji.has(kanji) && s.japaneseText.includes(kanji)
+          );
 
           return (
             <div
