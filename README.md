@@ -44,7 +44,20 @@ Para activarlo en tu repositorio de GitHub:
 
 La configuración de Vite ya tiene establecido `base: './'` para que todos los scripts, estilos y recursos carguen correctamente sin importar el nombre del repositorio.
 
-## 📄 Licencias
+## Servidor local para desarrolladores e IA
+
+El flujo recomendado es arrancar el servidor de Vite localmente y abrirlo en el navegador
+
+```bash
+npm install
+npm run dev
+```
+
+Esto levanta la app con Vite en:
+
+- http://localhost:3000
+
+## Licencias
 
 - **Código de la aplicación:** Licencia MIT.
 - **Diagramas vectoriales de Kanji:** Proyecto [KanjiVG](https://github.com/KanjiVG/kanjivg) por Ulrich Apel y colaboradores, bajo licencia **Creative Commons Attribution-Share Alike 3.0 (CC BY-SA 3.0)**.
