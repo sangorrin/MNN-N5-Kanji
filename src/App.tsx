@@ -16,6 +16,7 @@ import { FlashcardsView } from './components/FlashcardsView';
 import { SentensuView } from './components/SentensuView';
 import { TangoView } from './components/TangoView';
 import { BunpoView } from './components/BunpoView';
+import { RefView } from './components/RefView';
 import { TermsPrivacyModal } from './components/TermsPrivacyModal';
 import {
   RotateCcw,
@@ -356,6 +357,14 @@ export default function App() {
                     setSelectedLessonId(lessonId);
                   }
                   setCurrentMode('sentensu');
+                }}
+              />
+            ) : currentMode === 'ref' ? (
+              <RefView
+                currentLesson={currentLessonGroup}
+                onSelectKanji={handleSelectKanjiByChar}
+                onSelectLesson={(lessonId) => {
+                  setSelectedLessonId(lessonId);
                 }}
               />
             ) : (

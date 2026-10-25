@@ -77,5 +77,42 @@ export interface GrammarPoint {
   examples?: GrammarExample[];
 }
 
-export type StudyMode = 'kanji' | 'flashcards' | 'sentensu' | 'tango' | 'bunpo';
+export interface ReferenceSegment {
+  text: string;
+  furigana?: string;
+}
+
+export interface ReferenceCountryTriple {
+  country: { japanese: string; segments: ReferenceSegment[]; romaji: string; spanish: string };
+  nationality: { japanese: string; segments: ReferenceSegment[]; romaji: string; spanish: string };
+  language: { japanese: string; segments: ReferenceSegment[]; romaji: string; spanish: string };
+  targetKanji: string[];
+}
+
+export interface ReferenceItem {
+  id: string;
+  lessonId: string;
+  category?: string;
+  japanese: string;
+  reading?: string;
+  romaji: string;
+  spanish: string;
+  details?: string;
+  badge?: string;
+  segments: ReferenceSegment[];
+  targetKanji: string[];
+  countryTriple?: ReferenceCountryTriple;
+}
+
+export interface ReferenceLesson {
+  lessonId: string;
+  lessonNumber: string;
+  topic: string;
+  topicJapanese: string;
+  topicDescription: string;
+  categories: string[];
+  items: ReferenceItem[];
+}
+
+export type StudyMode = 'kanji' | 'flashcards' | 'sentensu' | 'tango' | 'bunpo' | 'ref';
 export type FlashcardSubMode = 'imi' | 'hatsuon' | 'tango' | 'sentensu';

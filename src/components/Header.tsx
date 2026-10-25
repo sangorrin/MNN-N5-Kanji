@@ -120,6 +120,20 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => {
+              onSelectMode('ref');
+            }}
+            className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
+              currentMode === 'ref' && !onlyFavorites
+                ? 'bg-white text-rose-700 shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span className="font-serif font-bold text-xs">参</span>
+            <span>Ref</span>
+          </button>
+
+          <button
+            onClick={() => {
               playSoftClick();
               onSelectMode('flashcards');
             }}
