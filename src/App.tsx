@@ -15,6 +15,7 @@ import { KanjiDetailView } from './components/KanjiDetailView';
 import { FlashcardsView } from './components/FlashcardsView';
 import { SentensuView } from './components/SentensuView';
 import { TangoView } from './components/TangoView';
+import { BunpoView } from './components/BunpoView';
 import { TermsPrivacyModal } from './components/TermsPrivacyModal';
 import {
   RotateCcw,
@@ -29,6 +30,7 @@ export default function App() {
   const [currentMode, setCurrentMode] = useState<StudyMode>('kanji');
   const [selectedKanji, setSelectedKanji] = useState<KanjiItem | null>(null);
   const [highlightWordId, setHighlightWordId] = useState<string | null>(null);
+  const [highlightGrammarId, setHighlightGrammarId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [studyCounts, setStudyCounts] = useState<Record<number, number>>({});
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -135,6 +137,16 @@ export default function App() {
     setHighlightWordId(word.id);
     setSelectedKanji(null);
     setCurrentMode('tango');
+  };
+
+  // Select grammar point from Sentensu or elsewhere
+  const handleSelectGrammar = (grammarId: string, lessonId?: string) => {
+    if (lessonId && selectedLessonId !== 'all' && lessonId !== selectedLessonId) {
+      setSelectedLessonId(lessonId);
+    }
+    setHighlightGrammarId(grammarId);
+    setSelectedKanji(null);
+    setCurrentMode('bunpo');
   };
 
   // Reset lesson study progress
@@ -332,6 +344,19 @@ export default function App() {
                 currentLesson={currentLessonGroup}
                 onSelectKanji={handleSelectKanjiByChar}
                 onSelectTango={handleSelectTango}
+                onSelectGrammar={handleSelectGrammar}
+              />
+            ) : currentMode === 'bunpo' ? (
+              <BunpoView
+                currentLesson={currentLessonGroup}
+                highlightGrammarId={highlightGrammarId}
+                onSelectKanji={handleSelectKanjiByChar}
+                onNavigateSentensu={(lessonId) => {
+                  if (lessonId && selectedLessonId !== 'all' && lessonId !== selectedLessonId) {
+                    setSelectedLessonId(lessonId);
+                  }
+                  setCurrentMode('sentensu');
+                }}
               />
             ) : (
               /* Mode: KANJI LIST */

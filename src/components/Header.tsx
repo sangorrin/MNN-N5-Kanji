@@ -61,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Row 2 in mobile (underneath title): Navigation mode buttons */}
-        <nav className="flex items-center justify-between sm:justify-start gap-1 p-1 bg-slate-100/90 rounded-2xl w-full sm:w-auto">
+        <nav className="flex items-center justify-between sm:justify-start gap-1 p-1 bg-slate-100/90 rounded-2xl w-full sm:w-auto overflow-x-auto scrollbar-none">
           <button
             onClick={() => {
               onSelectMode('kanji');
@@ -102,6 +102,20 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <span className="font-serif font-bold text-xs">文</span>
             <span>Sentensu</span>
+          </button>
+
+          <button
+            onClick={() => {
+              onSelectMode('bunpo');
+            }}
+            className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
+              currentMode === 'bunpo' && !onlyFavorites
+                ? 'bg-white text-rose-700 shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span className="font-serif font-bold text-xs">法</span>
+            <span>Bunpō</span>
           </button>
 
           <button

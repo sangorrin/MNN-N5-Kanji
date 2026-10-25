@@ -48,5 +48,34 @@ export interface VocabularyItem {
   targetKanji: string[];
 }
 
-export type StudyMode = 'kanji' | 'flashcards' | 'sentensu' | 'tango';
+export interface GrammarExampleSegment {
+  text: string;
+  furigana?: string;
+}
+
+export interface GrammarExample {
+  japanese: string;
+  segments: GrammarExampleSegment[];
+  romaji: string;
+  spanish: string;
+}
+
+export interface GrammarSubPoint {
+  title?: string;
+  explanation: string;
+  examples?: GrammarExample[];
+}
+
+export interface GrammarPoint {
+  id: string;
+  lessonId: string;
+  lessonNumber: string;
+  order: number;
+  title: string;
+  explanation: string;
+  subPoints?: GrammarSubPoint[];
+  examples?: GrammarExample[];
+}
+
+export type StudyMode = 'kanji' | 'flashcards' | 'sentensu' | 'tango' | 'bunpo';
 export type FlashcardSubMode = 'imi' | 'hatsuon' | 'tango' | 'sentensu';

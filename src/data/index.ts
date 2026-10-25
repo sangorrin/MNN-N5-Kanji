@@ -25,4 +25,5 @@ export function getKanjiByLesson(lessonId: string): KanjiItem[] {
 export * from './types';
 export * from './lessons';
 export { MNN_VOCABULARY, getVocabularyByLesson } from './vocabulary';
+export { MNN_GRAMMAR, GRAMMAR_BY_ID, getGrammarByLesson, getGrammarForSentence } from './grammar';
 

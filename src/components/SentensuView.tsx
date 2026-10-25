@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Volume2, BookOpen, ToggleLeft, ToggleRight, Sparkles, ArrowRight, Search, X } from 'lucide-react';
 import { SentenceItem, MNN_SENTENCES } from '../data/sentences';
 import { LessonGroup } from '../data/types';
-import { getKanjiByLesson } from '../data';
+import { getKanjiByLesson, getGrammarForSentence } from '../data';
 import { getVocabularyByLesson, VocabularyItem } from '../data/vocabulary';
 import { speakJapanese } from '../utils/audio';
 
@@ -10,12 +10,14 @@ interface SentensuViewProps {
   currentLesson: LessonGroup;
   onSelectKanji?: (kanjiChar: string) => void;
   onSelectTango?: (word: VocabularyItem) => void;
+  onSelectGrammar?: (grammarId: string, lessonId?: string) => void;
 }
 
 export const SentensuView: React.FC<SentensuViewProps> = ({
   currentLesson,
   onSelectKanji,
   onSelectTango,
+  onSelectGrammar,
 }) => {
   const [showFurigana, setShowFurigana] = useState<boolean>(true);
   const [playingId, setPlayingId] = useState<string | null>(null);
@@ -148,6 +150,9 @@ export const SentensuView: React.FC<SentensuViewProps> = ({
             (w) => w.kanji.length > 0 && s.japaneseText.includes(w.kanji)
           );
 
+          // Find matching grammar points for this sentence
+          const matchingGrammar = getGrammarForSentence(s);
+
           return (
             <div
               key={s.id}
@@ -221,13 +226,13 @@ export const SentensuView: React.FC<SentensuViewProps> = ({
                 {s.spanish}
               </div>
 
-              {/* Kanji y vocabulario de la lección */}
-              {(validKanji.length > 0 || matchingWords.length > 0) && (
+              {/* Kanji, vocabulario y gramática de la lección */}
+              {(validKanji.length > 0 || matchingWords.length > 0 || matchingGrammar.length > 0) && (
                 <div className="mt-3 pt-3 border-t border-slate-100 flex flex-col gap-2">
                   <div className="flex flex-wrap items-center gap-1.5">
                     <span className="text-[11px] font-semibold text-slate-400 mr-1 flex items-center gap-1">
                       <Sparkles size={11} className="text-amber-500" />
-                      Kanji y vocabulario de la lección:
+                      Kanji, vocabulario y gramática:
                     </span>
 
                     {/* Kanji Chips */}
@@ -267,6 +272,23 @@ export const SentensuView: React.FC<SentensuViewProps> = ({
                         </button>
                       );
                     })}
+
+                    {/* Gramática (Bunpō) Chips */}
+                    {matchingGrammar.map((gp) => (
+                      <button
+                        key={gp.id}
+                        type="button"
+                        onClick={() => onSelectGrammar && onSelectGrammar(gp.id, gp.lessonId)}
+                        className="group inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-semibold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200/80 transition-all cursor-pointer shadow-2xs"
+                        title={`Ver explicación gramatical: ${gp.title}`}
+                      >
+                        <span className="font-medium text-[11px]">{gp.title}</span>
+                        <ArrowRight
+                          size={11}
+                          className="text-emerald-500 group-hover:translate-x-0.5 transition-transform"
+                        />
+                      </button>
+                    ))}
                   </div>
                 </div>
               )}
