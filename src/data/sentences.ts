@@ -116,7 +116,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 1 (文型 & 例文) ---
   {
     id: "s-l01-1",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "文型 (Patrón)",
     segments: [
@@ -129,7 +129,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l01-2",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "文型 (Patrón)",
     segments: [
@@ -144,7 +144,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l01-3",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "文型 (Patrón)",
     segments: [
@@ -159,7 +159,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l01-b4",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "文型 (Patrón)",
     segments: [
@@ -174,7 +174,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l01-e1",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "例文 (Ejemplo)",
     segments: [
@@ -187,7 +187,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l01-e2",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "例文 (Ejemplo)",
     segments: [
@@ -204,7 +204,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l01-e3",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "例文 (Ejemplo)",
     segments: [
@@ -223,7 +223,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l01-4",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "例文 (Ejemplo)",
     segments: [
@@ -241,7 +241,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l01-e5",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "例文 (Ejemplo)",
     segments: [
@@ -262,7 +262,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l01-e6",
-    lessonId: "l01-02",
+    lessonId: "l01",
     lessonNumber: "Lección 1",
     section: "例文 (Ejemplo)",
     segments: [
@@ -281,7 +281,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 2 (文型 & 例文) ---
   {
     id: "s-l02-b1",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "文型 (Patrón)",
     segments: [
@@ -296,7 +296,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-b2",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "文型 (Patrón)",
     segments: [
@@ -311,7 +311,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-b3",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "文型 (Patrón)",
     segments: [
@@ -326,7 +326,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-1",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "文型 (Patrón)",
     segments: [
@@ -341,7 +341,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-2",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "文型 (Patrón)",
     segments: [
@@ -358,7 +358,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-e1",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -371,7 +371,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-e2",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -386,7 +386,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-e3",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -403,7 +403,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-e4",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -416,7 +416,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-e5",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -435,7 +435,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-e6",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -450,7 +450,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-e7",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -463,7 +463,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-e8",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -476,7 +476,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-3",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -494,7 +494,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l02-4",
-    lessonId: "l01-02",
+    lessonId: "l02",
     lessonNumber: "Lección 2",
     section: "例文 (Ejemplo)",
     segments: [
@@ -512,7 +512,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 3 (文型 & 例文) ---
   {
     id: "s-l03-1",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "文型 (Patrón)",
     segments: [
@@ -527,7 +527,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-b2",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "文型 (Patrón)",
     segments: [
@@ -540,7 +540,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-e1",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "例文 (Ejemplo)",
     segments: [
@@ -555,7 +555,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-e2",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "例文 (Ejemplo)",
     segments: [
@@ -568,7 +568,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-e3",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "例文 (Ejemplo)",
     segments: [
@@ -584,7 +584,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-e4",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "例文 (Ejemplo)",
     segments: [
@@ -598,7 +598,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-e5",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "例文 (Ejemplo)",
     segments: [
@@ -613,7 +613,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-2",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "例文 (Ejemplo)",
     segments: [
@@ -627,7 +627,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-e6",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "例文 (Ejemplo)",
     segments: [
@@ -644,7 +644,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-e7",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "例文 (Ejemplo)",
     segments: [
@@ -661,7 +661,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l03-3",
-    lessonId: "l03-04",
+    lessonId: "l03",
     lessonNumber: "Lección 3",
     section: "例文 (Ejemplo)",
     segments: [
@@ -678,7 +678,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 4 (文型 & 例文) ---
   {
     id: "s-l04-b1",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "文型 (Patrón)",
     segments: [
@@ -696,7 +696,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-1",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "文型 (Patrón)",
     segments: [
@@ -711,7 +711,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-2",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "文型 (Patrón)",
     segments: [
@@ -729,7 +729,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-b3",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "文型 (Patrón)",
     segments: [
@@ -744,7 +744,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-e1",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "例文 (Ejemplo)",
     segments: [
@@ -762,7 +762,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-e2",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "例文 (Ejemplo)",
     segments: [
@@ -783,7 +783,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-e3",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "例文 (Ejemplo)",
     segments: [
@@ -803,7 +803,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-e4",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "例文 (Ejemplo)",
     segments: [
@@ -826,7 +826,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-e5",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "例文 (Ejemplo)",
     segments: [
@@ -864,7 +864,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-e6",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "例文 (Ejemplo)",
     segments: [
@@ -881,7 +881,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-e7",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "例文 (Ejemplo)",
     segments: [
@@ -898,7 +898,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-3",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "例文 (Ejemplo)",
     segments: [
@@ -920,7 +920,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l04-4",
-    lessonId: "l03-04",
+    lessonId: "l04",
     lessonNumber: "Lección 4",
     section: "例文 (Ejemplo)",
     segments: [
@@ -938,7 +938,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 5 (文型 & 例文) ---
   {
     id: "s-l05-1",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "文型 (Patrón)",
     segments: [
@@ -955,7 +955,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-b2",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "文型 (Patrón)",
     segments: [
@@ -970,7 +970,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-b3",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "文型 (Patrón)",
     segments: [
@@ -989,7 +989,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-2",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "文型 (Patrón)",
     segments: [
@@ -1008,7 +1008,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-3",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "文型 (Patrón)",
     segments: [
@@ -1025,7 +1025,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-e1",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1044,7 +1044,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-e2",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1062,7 +1062,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-e3",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1084,7 +1084,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-e4",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1105,7 +1105,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-e5",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1128,7 +1128,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l05-e6",
-    lessonId: "l05-06",
+    lessonId: "l05",
     lessonNumber: "Lección 5",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1148,7 +1148,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 6 (文型 & 例文) ---
   {
     id: "s-l06-b1",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "文型 (Patrón)",
     segments: [
@@ -1165,7 +1165,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-b2",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "文型 (Patrón)",
     segments: [
@@ -1184,7 +1184,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-b3",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "文型 (Patrón)",
     segments: [
@@ -1201,7 +1201,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-b4",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "文型 (Patrón)",
     segments: [
@@ -1216,7 +1216,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-1",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "文型 (Patrón)",
     segments: [
@@ -1233,7 +1233,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-2",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "文型 (Patrón)",
     segments: [
@@ -1252,7 +1252,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-3",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1270,7 +1270,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-e1",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1289,7 +1289,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-e2",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1310,7 +1310,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-e3",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1331,7 +1331,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-e4",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1354,7 +1354,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-e5",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1371,7 +1371,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-e6",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1384,7 +1384,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l06-e7",
-    lessonId: "l05-06",
+    lessonId: "l06",
     lessonNumber: "Lección 6",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1405,7 +1405,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 7 (文型 & 例文) ---
   {
     id: "s-l07-b1",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "文型 (Patrón)",
     segments: [
@@ -1422,7 +1422,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-b2",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "文型 (Patrón)",
     segments: [
@@ -1439,7 +1439,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-b3",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "文型 (Patrón)",
     segments: [
@@ -1452,7 +1452,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-b4",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "文型 (Patrón)",
     segments: [
@@ -1467,7 +1467,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-1",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "文型 (Patrón)",
     segments: [
@@ -1484,7 +1484,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-2",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "文型 (Patrón)",
     segments: [
@@ -1498,7 +1498,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-e1",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1517,7 +1517,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-e2",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1537,7 +1537,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-e3",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1554,7 +1554,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-e4",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1577,7 +1577,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-e5",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1596,7 +1596,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-e6",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1617,7 +1617,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l07-e7",
-    lessonId: "l07-08",
+    lessonId: "l07",
     lessonNumber: "Lección 7",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1638,7 +1638,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 8 (文型 & 例文) ---
   {
     id: "s-l08-b1",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "文型 (Patrón)",
     segments: [
@@ -1652,7 +1652,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-b2",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "文型 (Patrón)",
     segments: [
@@ -1668,7 +1668,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-2",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "文型 (Patrón)",
     segments: [
@@ -1684,7 +1684,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-1",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "文型 (Patrón)",
     segments: [
@@ -1701,7 +1701,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-3",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1719,7 +1719,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-e1",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1733,7 +1733,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-e2",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1752,7 +1752,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-e3",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1774,7 +1774,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-e4",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1794,7 +1794,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-e5",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1813,7 +1813,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l08-e6",
-    lessonId: "l07-08",
+    lessonId: "l08",
     lessonNumber: "Lección 8",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1840,7 +1840,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 9 (文型 & 例文) ---
   {
     id: "s-l09-b1",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "文型 (Patrón)",
     segments: [
@@ -1857,7 +1857,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-b2",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "文型 (Patrón)",
     segments: [
@@ -1874,7 +1874,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-b3",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "文型 (Patrón)",
     segments: [
@@ -1894,7 +1894,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-1",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "文型 (Patrón)",
     segments: [
@@ -1915,7 +1915,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-2",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1932,7 +1932,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-e1",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1951,7 +1951,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-e2",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1968,7 +1968,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-e3",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "例文 (Ejemplo)",
     segments: [
@@ -1987,7 +1987,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-e4",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2005,7 +2005,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-e5",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2021,7 +2021,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-e6",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2042,7 +2042,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l09-e7",
-    lessonId: "l09-10",
+    lessonId: "l09",
     lessonNumber: "Lección 9",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2062,7 +2062,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 10 (文型 & 例文) ---
   {
     id: "s-l10-b1",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "文型 (Patrón)",
     segments: [
@@ -2075,7 +2075,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-b2",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "文型 (Patrón)",
     segments: [
@@ -2090,7 +2090,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-b3",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "文型 (Patrón)",
     segments: [
@@ -2106,7 +2106,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-b4",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "文型 (Patrón)",
     segments: [
@@ -2120,7 +2120,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-1",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "文型 (Patrón)",
     segments: [
@@ -2138,7 +2138,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-2",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "文型 (Patrón)",
     segments: [
@@ -2158,7 +2158,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-3",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2177,7 +2177,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-e1",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2192,7 +2192,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-e2",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2211,7 +2211,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-e3",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2227,7 +2227,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-e4",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2250,7 +2250,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-e5",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2272,7 +2272,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l10-e6",
-    lessonId: "l09-10",
+    lessonId: "l10",
     lessonNumber: "Lección 10",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2289,7 +2289,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 11 (文型 & 例文) ---
   {
     id: "s-l11-b1",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "文型 (Patrón)",
     segments: [
@@ -2305,7 +2305,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-b2",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "文型 (Patrón)",
     segments: [
@@ -2322,7 +2322,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-1",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "文型 (Patrón)",
     segments: [
@@ -2340,7 +2340,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-2",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2357,7 +2357,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-e1",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2375,7 +2375,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-e2",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2400,7 +2400,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-e3",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2422,7 +2422,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-e4",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2448,7 +2448,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-e5",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2467,7 +2467,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-e6",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2492,7 +2492,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l11-e7",
-    lessonId: "l11-12",
+    lessonId: "l11",
     lessonNumber: "Lección 11",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2514,7 +2514,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 12 (文型 & 例文) ---
   {
     id: "s-l12-b1",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "文型 (Patrón)",
     segments: [
@@ -2529,7 +2529,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-b2",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "文型 (Patrón)",
     segments: [
@@ -2544,7 +2544,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-b3",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "文型 (Patrón)",
     segments: [
@@ -2562,7 +2562,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-b4",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "文型 (Patrón)",
     segments: [
@@ -2581,7 +2581,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-1",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "文型 (Patrón)",
     segments: [
@@ -2600,7 +2600,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-2",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2620,7 +2620,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-e1",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2638,7 +2638,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-e2",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2658,7 +2658,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-e3",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2675,7 +2675,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-e4",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2694,7 +2694,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-e5",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2716,7 +2716,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-e6",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2736,7 +2736,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l12-e7",
-    lessonId: "l11-12",
+    lessonId: "l12",
     lessonNumber: "Lección 12",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2760,7 +2760,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 13 (文型 & 例文) ---
   {
     id: "s-l13-b1",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "文型 (Patrón)",
     segments: [
@@ -2777,7 +2777,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-b2",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "文型 (Patrón)",
     segments: [
@@ -2792,7 +2792,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-b3",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "文型 (Patrón)",
     segments: [
@@ -2810,7 +2810,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-1",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "文型 (Patrón)",
     segments: [
@@ -2827,7 +2827,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-2",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2846,7 +2846,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-e1",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2867,7 +2867,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-e2",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2887,7 +2887,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-e3",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2908,7 +2908,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-e4",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2933,7 +2933,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-e5",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2959,7 +2959,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l13-e6",
-    lessonId: "l13-14",
+    lessonId: "l13",
     lessonNumber: "Lección 13",
     section: "例文 (Ejemplo)",
     segments: [
@@ -2983,7 +2983,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 14 (文型 & 例文) ---
   {
     id: "s-l14-b1",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "文型 (Patrón)",
     segments: [
@@ -3005,7 +3005,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l14-b2",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "文型 (Patrón)",
     segments: [
@@ -3031,7 +3031,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l14-b3",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "文型 (Patrón)",
     segments: [
@@ -3057,7 +3057,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l14-b4",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "文型 (Patrón)",
     segments: [
@@ -3090,7 +3090,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l14-e1",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3119,7 +3119,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l14-e2",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3155,7 +3155,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l14-e3",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3195,7 +3195,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l14-e4",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3235,7 +3235,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l14-e5",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3275,7 +3275,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l14-e6",
-    lessonId: "l13-14",
+    lessonId: "l14",
     lessonNumber: "Lección 14",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3313,7 +3313,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 15 (文型 & 例文) ---
   {
     id: "s-l15-b1",
-    lessonId: "l15-16",
+    lessonId: "l15",
     lessonNumber: "Lección 15",
     section: "文型 (Patrón)",
     segments: [
@@ -3339,7 +3339,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l15-b2",
-    lessonId: "l15-16",
+    lessonId: "l15",
     lessonNumber: "Lección 15",
     section: "文型 (Patrón)",
     segments: [
@@ -3368,7 +3368,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l15-e1",
-    lessonId: "l15-16",
+    lessonId: "l15",
     lessonNumber: "Lección 15",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3383,7 +3383,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l15-e2",
-    lessonId: "l15-16",
+    lessonId: "l15",
     lessonNumber: "Lección 15",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3423,7 +3423,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l15-e3",
-    lessonId: "l15-16",
+    lessonId: "l15",
     lessonNumber: "Lección 15",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3452,7 +3452,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l15-e4",
-    lessonId: "l15-16",
+    lessonId: "l15",
     lessonNumber: "Lección 15",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3488,7 +3488,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l15-e5",
-    lessonId: "l15-16",
+    lessonId: "l15",
     lessonNumber: "Lección 15",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3517,7 +3517,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l15-e6",
-    lessonId: "l15-16",
+    lessonId: "l15",
     lessonNumber: "Lección 15",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3557,7 +3557,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l15-e7",
-    lessonId: "l15-16",
+    lessonId: "l15",
     lessonNumber: "Lección 15",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3583,7 +3583,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 16 (文型 & 例文) ---
   {
     id: "s-l16-b1",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "文型 (Patrón)",
     segments: [
@@ -3623,7 +3623,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l16-b2",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "文型 (Patrón)",
     segments: [
@@ -3652,7 +3652,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l16-b3",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "文型 (Patrón)",
     segments: [
@@ -3678,7 +3678,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l16-b4",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "文型 (Patrón)",
     segments: [
@@ -3714,7 +3714,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l16-e1",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3778,7 +3778,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l16-e2",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3839,7 +3839,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l16-e3",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3893,7 +3893,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l16-e4",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3947,7 +3947,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l16-e5",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "例文 (Ejemplo)",
     segments: [
@@ -3987,7 +3987,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l16-e6",
-    lessonId: "l15-16",
+    lessonId: "l16",
     lessonNumber: "Lección 16",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4023,7 +4023,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 17 (文型 & 例文) ---
   {
     id: "s-l17-b1",
-    lessonId: "l17-18",
+    lessonId: "l17",
     lessonNumber: "Lección 17",
     section: "文型 (Patrón)",
     segments: [
@@ -4049,7 +4049,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l17-b2",
-    lessonId: "l17-18",
+    lessonId: "l17",
     lessonNumber: "Lección 17",
     section: "文型 (Patrón)",
     segments: [
@@ -4071,7 +4071,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l17-b3",
-    lessonId: "l17-18",
+    lessonId: "l17",
     lessonNumber: "Lección 17",
     section: "文型 (Patrón)",
     segments: [
@@ -4101,7 +4101,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l17-e1",
-    lessonId: "l17-18",
+    lessonId: "l17",
     lessonNumber: "Lección 17",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4130,7 +4130,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l17-e2",
-    lessonId: "l17-18",
+    lessonId: "l17",
     lessonNumber: "Lección 17",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4159,7 +4159,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l17-e3",
-    lessonId: "l17-18",
+    lessonId: "l17",
     lessonNumber: "Lección 17",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4206,7 +4206,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l17-e4",
-    lessonId: "l17-18",
+    lessonId: "l17",
     lessonNumber: "Lección 17",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4239,7 +4239,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l17-e5",
-    lessonId: "l17-18",
+    lessonId: "l17",
     lessonNumber: "Lección 17",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4275,7 +4275,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l17-e6",
-    lessonId: "l17-18",
+    lessonId: "l17",
     lessonNumber: "Lección 17",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4309,7 +4309,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 18 (文型 & 例文) ---
   {
     id: "s-l18-b1",
-    lessonId: "l17-18",
+    lessonId: "l18",
     lessonNumber: "Lección 18",
     section: "文型 (Patrón)",
     segments: [
@@ -4341,7 +4341,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l18-b2",
-    lessonId: "l17-18",
+    lessonId: "l18",
     lessonNumber: "Lección 18",
     section: "文型 (Patrón)",
     segments: [
@@ -4377,7 +4377,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l18-b3",
-    lessonId: "l17-18",
+    lessonId: "l18",
     lessonNumber: "Lección 18",
     section: "文型 (Patrón)",
     segments: [
@@ -4410,7 +4410,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l18-e1",
-    lessonId: "l17-18",
+    lessonId: "l18",
     lessonNumber: "Lección 18",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4439,7 +4439,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l18-e2",
-    lessonId: "l17-18",
+    lessonId: "l18",
     lessonNumber: "Lección 18",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4472,7 +4472,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l18-e3",
-    lessonId: "l17-18",
+    lessonId: "l18",
     lessonNumber: "Lección 18",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4515,7 +4515,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l18-e4",
-    lessonId: "l17-18",
+    lessonId: "l18",
     lessonNumber: "Lección 18",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4569,7 +4569,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l18-e5",
-    lessonId: "l17-18",
+    lessonId: "l18",
     lessonNumber: "Lección 18",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4619,7 +4619,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l18-e6",
-    lessonId: "l17-18",
+    lessonId: "l18",
     lessonNumber: "Lección 18",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4649,7 +4649,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 19 (文型 & 例文) ---
   {
     id: "s-l19-b1",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "文型 (Patrón)",
     segments: [
@@ -4678,7 +4678,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l19-b2",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "文型 (Patrón)",
     segments: [
@@ -4718,7 +4718,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l19-b3",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "文型 (Patrón)",
     segments: [
@@ -4740,7 +4740,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l19-b4",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "文型 (Patrón)",
     segments: [
@@ -4769,7 +4769,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l19-e1",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4816,7 +4816,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l19-e2",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4856,7 +4856,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l19-e3",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4903,7 +4903,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l19-e4",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4939,7 +4939,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l19-e5",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "例文 (Ejemplo)",
     segments: [
@@ -4961,7 +4961,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l19-e6",
-    lessonId: "l19-20",
+    lessonId: "l19",
     lessonNumber: "Lección 19",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5002,7 +5002,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 20 (文型 & 例文) ---
   {
     id: "s-l20-b1",
-    lessonId: "l19-20",
+    lessonId: "l20",
     lessonNumber: "Lección 20",
     section: "文型 (Patrón)",
     segments: [
@@ -5024,7 +5024,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l20-b2",
-    lessonId: "l19-20",
+    lessonId: "l20",
     lessonNumber: "Lección 20",
     section: "文型 (Patrón)",
     segments: [
@@ -5057,7 +5057,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l20-b3",
-    lessonId: "l19-20",
+    lessonId: "l20",
     lessonNumber: "Lección 20",
     section: "文型 (Patrón)",
     segments: [
@@ -5083,7 +5083,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l20-b4",
-    lessonId: "l19-20",
+    lessonId: "l20",
     lessonNumber: "Lección 20",
     section: "文型 (Patrón)",
     segments: [
@@ -5112,7 +5112,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l20-e1",
-    lessonId: "l19-20",
+    lessonId: "l20",
     lessonNumber: "Lección 20",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5134,7 +5134,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l20-e2",
-    lessonId: "l19-20",
+    lessonId: "l20",
     lessonNumber: "Lección 20",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5163,7 +5163,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l20-e3",
-    lessonId: "l19-20",
+    lessonId: "l20",
     lessonNumber: "Lección 20",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5207,7 +5207,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l20-e4",
-    lessonId: "l19-20",
+    lessonId: "l20",
     lessonNumber: "Lección 20",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5254,7 +5254,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l20-e5",
-    lessonId: "l19-20",
+    lessonId: "l20",
     lessonNumber: "Lección 20",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5286,7 +5286,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 21 (文型 & 例文) ---
   {
     id: "s-l21-b1",
-    lessonId: "l21-22",
+    lessonId: "l21",
     lessonNumber: "Lección 21",
     section: "文型 (Patrón)",
     segments: [
@@ -5322,7 +5322,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l21-b2",
-    lessonId: "l21-22",
+    lessonId: "l21",
     lessonNumber: "Lección 21",
     section: "文型 (Patrón)",
     segments: [
@@ -5358,7 +5358,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l21-b3",
-    lessonId: "l21-22",
+    lessonId: "l21",
     lessonNumber: "Lección 21",
     section: "文型 (Patrón)",
     segments: [
@@ -5377,7 +5377,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l21-b4",
-    lessonId: "l21-22",
+    lessonId: "l21",
     lessonNumber: "Lección 21",
     section: "文型 (Patrón)",
     segments: [
@@ -5410,7 +5410,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l21-e1",
-    lessonId: "l21-22",
+    lessonId: "l21",
     lessonNumber: "Lección 21",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5464,7 +5464,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l21-e2",
-    lessonId: "l21-22",
+    lessonId: "l21",
     lessonNumber: "Lección 21",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5515,7 +5515,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l21-e3",
-    lessonId: "l21-22",
+    lessonId: "l21",
     lessonNumber: "Lección 21",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5541,7 +5541,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l21-e4",
-    lessonId: "l21-22",
+    lessonId: "l21",
     lessonNumber: "Lección 21",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5570,7 +5570,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l21-e5",
-    lessonId: "l21-22",
+    lessonId: "l21",
     lessonNumber: "Lección 21",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5604,7 +5604,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 22 (文型 & 例文) ---
   {
     id: "s-l22-b1",
-    lessonId: "l21-22",
+    lessonId: "l22",
     lessonNumber: "Lección 22",
     section: "文型 (Patrón)",
     segments: [
@@ -5626,7 +5626,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l22-b2",
-    lessonId: "l21-22",
+    lessonId: "l22",
     lessonNumber: "Lección 22",
     section: "文型 (Patrón)",
     segments: [
@@ -5648,7 +5648,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l22-b3",
-    lessonId: "l21-22",
+    lessonId: "l22",
     lessonNumber: "Lección 22",
     section: "文型 (Patrón)",
     segments: [
@@ -5677,7 +5677,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l22-b4",
-    lessonId: "l21-22",
+    lessonId: "l22",
     lessonNumber: "Lección 22",
     section: "文型 (Patrón)",
     segments: [
@@ -5707,7 +5707,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l22-e1",
-    lessonId: "l21-22",
+    lessonId: "l22",
     lessonNumber: "Lección 22",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5751,7 +5751,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l22-e2",
-    lessonId: "l21-22",
+    lessonId: "l22",
     lessonNumber: "Lección 22",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5780,7 +5780,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l22-e3",
-    lessonId: "l21-22",
+    lessonId: "l22",
     lessonNumber: "Lección 22",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5848,7 +5848,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l22-e4",
-    lessonId: "l21-22",
+    lessonId: "l22",
     lessonNumber: "Lección 22",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5896,7 +5896,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l22-e5",
-    lessonId: "l21-22",
+    lessonId: "l22",
     lessonNumber: "Lección 22",
     section: "例文 (Ejemplo)",
     segments: [
@@ -5933,7 +5933,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 23 (文型 & 例文) ---
   {
     id: "s-l23-b1",
-    lessonId: "l23-24",
+    lessonId: "l23",
     lessonNumber: "Lección 23",
     section: "文型 (Patrón)",
     segments: [
@@ -5973,7 +5973,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l23-b2",
-    lessonId: "l23-24",
+    lessonId: "l23",
     lessonNumber: "Lección 23",
     section: "文型 (Patrón)",
     segments: [
@@ -6009,7 +6009,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l23-e1",
-    lessonId: "l23-24",
+    lessonId: "l23",
     lessonNumber: "Lección 23",
     section: "例文 (Ejemplo)",
     segments: [
@@ -6049,7 +6049,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l23-e2",
-    lessonId: "l23-24",
+    lessonId: "l23",
     lessonNumber: "Lección 23",
     section: "例文 (Ejemplo)",
     segments: [
@@ -6096,7 +6096,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l23-e3",
-    lessonId: "l23-24",
+    lessonId: "l23",
     lessonNumber: "Lección 23",
     section: "例文 (Ejemplo)",
     segments: [
@@ -6132,7 +6132,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l23-e4",
-    lessonId: "l23-24",
+    lessonId: "l23",
     lessonNumber: "Lección 23",
     section: "例文 (Ejemplo)",
     segments: [
@@ -6175,7 +6175,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l23-e5",
-    lessonId: "l23-24",
+    lessonId: "l23",
     lessonNumber: "Lección 23",
     section: "例文 (Ejemplo)",
     segments: [
@@ -6213,7 +6213,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   // --- Lección 24 (文型 & 例文) ---
   {
     id: "s-l24-b1",
-    lessonId: "l23-24",
+    lessonId: "l24",
     lessonNumber: "Lección 24",
     section: "文型 (Patrón)",
     segments: [
@@ -6232,7 +6232,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l24-b2",
-    lessonId: "l23-24",
+    lessonId: "l24",
     lessonNumber: "Lección 24",
     section: "文型 (Patrón)",
     segments: [
@@ -6261,7 +6261,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l24-b3",
-    lessonId: "l23-24",
+    lessonId: "l24",
     lessonNumber: "Lección 24",
     section: "文型 (Patrón)",
     segments: [
@@ -6287,7 +6287,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l24-b4",
-    lessonId: "l23-24",
+    lessonId: "l24",
     lessonNumber: "Lección 24",
     section: "文型 (Patrón)",
     segments: [
@@ -6323,7 +6323,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l24-e1",
-    lessonId: "l23-24",
+    lessonId: "l24",
     lessonNumber: "Lección 24",
     section: "例文 (Ejemplo)",
     segments: [
@@ -6359,7 +6359,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l24-e2",
-    lessonId: "l23-24",
+    lessonId: "l24",
     lessonNumber: "Lección 24",
     section: "例文 (Ejemplo)",
     segments: [
@@ -6406,7 +6406,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l24-e3",
-    lessonId: "l23-24",
+    lessonId: "l24",
     lessonNumber: "Lección 24",
     section: "例文 (Ejemplo)",
     segments: [
@@ -6446,7 +6446,7 @@ export const MNN_SENTENCES: SentenceItem[] = [
   },
   {
     id: "s-l24-e4",
-    lessonId: "l23-24",
+    lessonId: "l24",
     lessonNumber: "Lección 24",
     section: "例文 (Ejemplo)",
     segments: [

@@ -9,6 +9,7 @@ export interface KanjiItem {
   id: number;
   kanji: string;
   lessonId: string;
+  oldLessonId?: string;
   onyomi: string[];
   kunyomi: string[];
   meaning: string;
@@ -30,5 +31,22 @@ export interface LessonGroup {
   };
 }
 
-export type StudyMode = 'kanji' | 'flashcards' | 'sentensu';
+export interface VocabularySegment {
+  text: string;
+  furigana?: string;
+}
+
+export interface VocabularyItem {
+  id: string;
+  lessonId: string;
+  lessonNumber: string;
+  kanji: string;
+  reading: string;
+  romaji: string;
+  spanish: string;
+  segments: VocabularySegment[];
+  targetKanji: string[];
+}
+
+export type StudyMode = 'kanji' | 'flashcards' | 'sentensu' | 'tango';
 export type FlashcardSubMode = 'imi' | 'hatsuon' | 'tango' | 'sentensu';

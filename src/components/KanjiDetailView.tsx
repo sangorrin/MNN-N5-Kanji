@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { KanjiItem } from '../data/types';
-import { getKanjiHex } from '../data';
+import { getKanjiHex, ALL_KANJI } from '../data';
 import { MNN_SENTENCES } from '../data/sentences';
 import { KanjiSvgPlayer } from './KanjiSvgPlayer';
 import { PracticeCanvas } from './PracticeCanvas';
@@ -79,7 +79,7 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
             <ChevronLeft size={18} />
           </button>
           <span className="text-xs font-semibold text-slate-500 px-1.5 tabular-nums">
-            #{kanji.id} / 218
+            #{kanji.id} / {ALL_KANJI.length}
           </span>
           <button
             onClick={onNextKanji}

@@ -1,17 +1,7 @@
 import { KanjiItem } from './types';
-import { KANJI_PRE_04 } from './kanji_pre_04';
-import { KANJI_05_10 } from './kanji_05_10';
-import { KANJI_11_16 } from './kanji_11_16';
-import { KANJI_17_20 } from './kanji_17_20';
-import { KANJI_21_25 } from './kanji_21_25';
+import { ALL_KANJI } from './kanji_all';
 
-export const ALL_KANJI: KanjiItem[] = [
-  ...KANJI_PRE_04,
-  ...KANJI_05_10,
-  ...KANJI_11_16,
-  ...KANJI_17_20,
-  ...KANJI_21_25,
-];
+export { ALL_KANJI };
 
 export const KANJI_BY_ID = new Map<number, KanjiItem>(
   ALL_KANJI.map((k) => [k.id, k])
@@ -34,3 +24,5 @@ export function getKanjiByLesson(lessonId: string): KanjiItem[] {
 
 export * from './types';
 export * from './lessons';
+export { MNN_VOCABULARY, getVocabularyByLesson } from './vocabulary';
+

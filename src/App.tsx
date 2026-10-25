@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ALL_KANJI, getKanjiByLesson, LESSON_GROUPS } from './data';
+import { ALL_KANJI, getKanjiByLesson, LESSON_GROUPS, VocabularyItem } from './data';
 import { KanjiItem, StudyMode } from './data/types';
 import {
   getStudyCounts,
@@ -14,6 +14,7 @@ import { KanjiCard, getPastelStyle } from './components/KanjiCard';
 import { KanjiDetailView } from './components/KanjiDetailView';
 import { FlashcardsView } from './components/FlashcardsView';
 import { SentensuView } from './components/SentensuView';
+import { TangoView } from './components/TangoView';
 import { TermsPrivacyModal } from './components/TermsPrivacyModal';
 import {
   RotateCcw,
@@ -27,6 +28,7 @@ export default function App() {
   const [selectedLessonId, setSelectedLessonId] = useState<string>('pre');
   const [currentMode, setCurrentMode] = useState<StudyMode>('kanji');
   const [selectedKanji, setSelectedKanji] = useState<KanjiItem | null>(null);
+  const [highlightWordId, setHighlightWordId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [studyCounts, setStudyCounts] = useState<Record<number, number>>({});
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -81,10 +83,10 @@ export default function App() {
     if (selectedLessonId === 'all') {
       return {
         id: 'all',
-        title: 'Todos los 218 Kanji',
+        title: `Todos los ${ALL_KANJI.length} Kanji`,
         shortTitle: 'Todos',
-        description: 'Lista completa de los 218 kanji de Minna no Nihongo N5',
-        kanjiCount: 218,
+        description: `Lista completa de los ${ALL_KANJI.length} kanji de Minna no Nihongo N5`,
+        kanjiCount: ALL_KANJI.length,
         pastelColor: {
           bg: 'bg-slate-50',
           border: 'border-slate-200',
@@ -110,7 +112,7 @@ export default function App() {
     setFavorites(getFavorites());
   };
 
-  // Select kanji by character (e.g. clicked from Sentensu "Kanji de la lección" chips)
+  // Select kanji by character (e.g. clicked from Sentensu or Tango chips)
   const handleSelectKanjiByChar = (char: string) => {
     const found = ALL_KANJI.find((k) => k.kanji === char);
     if (found) {
@@ -123,6 +125,15 @@ export default function App() {
       }
       handleSelectKanji(found);
     }
+  };
+
+  // Select tango word from Sentensu or elsewhere
+  const handleSelectTango = (word: VocabularyItem) => {
+    if (selectedLessonId !== 'all' && word.lessonId !== selectedLessonId) {
+      setSelectedLessonId(word.lessonId);
+    }
+    setHighlightWordId(word.id);
+    setCurrentMode('tango');
   };
 
   // Reset lesson study progress
@@ -307,10 +318,17 @@ export default function App() {
                 kanjiList={displayedKanji}
                 lessonTitle={currentLessonGroup.title}
               />
+            ) : currentMode === 'tango' ? (
+              <TangoView
+                currentLesson={currentLessonGroup}
+                onSelectKanji={handleSelectKanjiByChar}
+                highlightWordId={highlightWordId}
+              />
             ) : currentMode === 'sentensu' ? (
               <SentensuView
                 currentLesson={currentLessonGroup}
                 onSelectKanji={handleSelectKanjiByChar}
+                onSelectTango={handleSelectTango}
               />
             ) : (
               /* Mode: KANJI LIST */

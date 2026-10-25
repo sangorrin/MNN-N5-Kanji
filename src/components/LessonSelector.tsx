@@ -4,6 +4,8 @@ import { LessonGroup } from '../data/types';
 import { ChevronDown, Layers } from 'lucide-react';
 import { playSoftClick } from '../utils/audio';
 
+import { ALL_KANJI } from '../data';
+
 interface LessonSelectorProps {
   selectedLessonId: string;
   onSelectLesson: (lessonId: string) => void;
@@ -39,7 +41,7 @@ export const LessonSelector: React.FC<LessonSelectorProps> = ({
           onChange={(e) => handleSelect(e.target.value)}
           className="w-full appearance-none bg-white border border-slate-200/90 rounded-2xl py-3 pl-4 pr-10 text-sm font-semibold text-slate-800 shadow-xs focus:outline-none focus:ring-2 focus:ring-rose-400"
         >
-          <option value="all">Todos los Kanji (218)</option>
+          <option value="all">Todos los Kanji ({ALL_KANJI.length})</option>
           {LESSON_GROUPS.map((g) => (
             <option key={g.id} value={g.id}>
               {g.title} ({g.kanjiCount} kanji)
@@ -66,7 +68,7 @@ export const LessonSelector: React.FC<LessonSelectorProps> = ({
           }`}
         >
           <Layers size={13} />
-          <span>Todos (218)</span>
+          <span>Todos ({ALL_KANJI.length})</span>
         </button>
 
         {LESSON_GROUPS.map((lesson) => {

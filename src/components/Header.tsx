@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({
                 MNN N5 kanji
               </span>
               <span className="text-[10px] text-slate-400 leading-none">
-                Minna no Nihongo · 218 Kanji
+                Minna no Nihongo · Vocabulario y Kanji
               </span>
             </div>
           </div>
@@ -64,7 +64,6 @@ export const Header: React.FC<HeaderProps> = ({
         <nav className="flex items-center justify-between sm:justify-start gap-1 p-1 bg-slate-100/90 rounded-2xl w-full sm:w-auto">
           <button
             onClick={() => {
-              //playSoftClick();
               onSelectMode('kanji');
             }}
             className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
@@ -75,6 +74,34 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <BookOpen size={14} />
             <span>Kanji</span>
+          </button>
+
+          <button
+            onClick={() => {
+              onSelectMode('tango');
+            }}
+            className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
+              currentMode === 'tango' && !onlyFavorites
+                ? 'bg-white text-rose-700 shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span className="font-serif font-bold text-xs">語</span>
+            <span>Tango</span>
+          </button>
+
+          <button
+            onClick={() => {
+              onSelectMode('sentensu');
+            }}
+            className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
+              currentMode === 'sentensu' && !onlyFavorites
+                ? 'bg-white text-rose-700 shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span className="font-serif font-bold text-xs">文</span>
+            <span>Sentensu</span>
           </button>
 
           <button
@@ -90,21 +117,6 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Sparkles size={14} />
             <span>Flashcards</span>
-          </button>
-
-          <button
-            onClick={() => {
-              //playSoftClick();
-              onSelectMode('sentensu');
-            }}
-            className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
-              currentMode === 'sentensu' && !onlyFavorites
-                ? 'bg-white text-rose-700 shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <span className="font-serif font-bold text-xs">文</span>
-            <span>Sentensu</span>
           </button>
 
           <button

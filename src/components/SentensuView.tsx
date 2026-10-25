@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Volume2, BookOpen, ToggleLeft, ToggleRight, Sparkles, ArrowRight } from 'lucide-react';
 import { SentenceItem, MNN_SENTENCES } from '../data/sentences';
 import { LessonGroup } from '../data/types';
 import { getKanjiByLesson } from '../data';
+import { getVocabularyByLesson, VocabularyItem } from '../data/vocabulary';
 import { speakJapanese } from '../utils/audio';
 
 interface SentensuViewProps {
   currentLesson: LessonGroup;
   onSelectKanji?: (kanjiChar: string) => void;
+  onSelectTango?: (word: VocabularyItem) => void;
 }
 
-export const SentensuView: React.FC<SentensuViewProps> = ({ currentLesson, onSelectKanji }) => {
+export const SentensuView: React.FC<SentensuViewProps> = ({
+  currentLesson,
+  onSelectKanji,
+  onSelectTango,
+}) => {
   const [showFurigana, setShowFurigana] = useState<boolean>(true);
   const [playingId, setPlayingId] = useState<string | null>(null);
 
-  // Filter sentences for the active lesson group
-  const sentences = MNN_SENTENCES.filter((s) => s.lessonId === currentLesson.id);
-  const lessonKanji = new Set(getKanjiByLesson(currentLesson.id).map((item) => item.kanji));
+  // Filter sentences for the active lesson
+  const sentences = useMemo(() => {
+    if (currentLesson.id === 'all') return MNN_SENTENCES;
+    return MNN_SENTENCES.filter((s) => s.lessonId === currentLesson.id);
+  }, [currentLesson.id]);
+
+  const lessonKanji = useMemo(() => {
+    return new Set(getKanjiByLesson(currentLesson.id).map((item) => item.kanji));
+  }, [currentLesson.id]);
+
+  const lessonWords = useMemo(() => {
+    return getVocabularyByLesson(currentLesson.id);
+  }, [currentLesson.id]);
 
   const handlePlaySentence = (s: SentenceItem) => {
     setPlayingId(s.id);
@@ -31,7 +47,9 @@ export const SentensuView: React.FC<SentensuViewProps> = ({ currentLesson, onSel
       {/* Header bar for Sentensu mode */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-slate-200/80 shadow-2xs">
         <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg ${currentLesson.pastelColor.bg} ${currentLesson.pastelColor.text}`}>
+          <div
+            className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg ${currentLesson.pastelColor.bg} ${currentLesson.pastelColor.text}`}
+          >
             文
           </div>
           <div>
@@ -83,7 +101,12 @@ export const SentensuView: React.FC<SentensuViewProps> = ({ currentLesson, onSel
         {sentences.map((s, idx) => {
           const isPlaying = playingId === s.id;
           const validKanji = [...new Set(s.targetKanji || [])].filter(
-            (kanji) => lessonKanji.has(kanji) && s.japaneseText.includes(kanji)
+            (kanji) => (currentLesson.id === 'all' || lessonKanji.has(kanji)) && s.japaneseText.includes(kanji)
+          );
+
+          // Find vocabulary words from this lesson present in the sentence
+          const matchingWords = lessonWords.filter(
+            (w) => w.kanji.length > 0 && s.japaneseText.includes(w.kanji)
           );
 
           return (
@@ -159,25 +182,46 @@ export const SentensuView: React.FC<SentensuViewProps> = ({ currentLesson, onSel
                 {s.spanish}
               </div>
 
-              {/* Kanji Chips: Only kanji appearing in the sentence */}
-              {validKanji.length > 0 && (
-                <div className="mt-3 pt-3 border-t border-slate-100 flex flex-wrap items-center gap-1.5">
-                  <span className="text-[11px] font-semibold text-slate-400 mr-1 flex items-center gap-1">
-                    <Sparkles size={11} className="text-amber-500" />
-                    Kanji de la lección:
-                  </span>
-                  {validKanji.map((k) => (
-                    <button
-                      key={k}
-                      type="button"
-                      onClick={() => onSelectKanji && onSelectKanji(k)}
-                      className="group inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-bold bg-slate-100 hover:bg-rose-50 text-slate-700 hover:text-rose-700 border border-slate-200/80 hover:border-rose-200 transition-all cursor-pointer shadow-2xs"
-                      title={`Ver detalles del kanji ${k} en modo Kanji`}
-                    >
-                      <span className="font-japanese text-sm">{k}</span>
-                      <ArrowRight size={11} className="text-slate-400 group-hover:text-rose-600 transition-transform group-hover:translate-x-0.5" />
-                    </button>
-                  ))}
+              {/* Kanji y vocabulario de la lección */}
+              {(validKanji.length > 0 || matchingWords.length > 0) && (
+                <div className="mt-3 pt-3 border-t border-slate-100 flex flex-col gap-2">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="text-[11px] font-semibold text-slate-400 mr-1 flex items-center gap-1">
+                      <Sparkles size={11} className="text-amber-500" />
+                      Kanji y vocabulario de la lección:
+                    </span>
+
+                    {/* Kanji Chips */}
+                    {validKanji.map((k) => (
+                      <button
+                        key={k}
+                        type="button"
+                        onClick={() => onSelectKanji && onSelectKanji(k)}
+                        className="group inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-bold bg-slate-100 hover:bg-rose-50 text-slate-700 hover:text-rose-700 border border-slate-200/80 hover:border-rose-200 transition-all cursor-pointer shadow-2xs"
+                        title={`Ver detalles del kanji ${k} en modo Kanji`}
+                      >
+                        <span className="font-japanese text-sm">{k}</span>
+                        <ArrowRight
+                          size={11}
+                          className="text-slate-400 group-hover:text-rose-600 transition-transform group-hover:translate-x-0.5"
+                        />
+                      </button>
+                    ))}
+
+                    {/* Vocabulario (Tango) Chips */}
+                    {matchingWords.map((w) => (
+                      <button
+                        key={w.id}
+                        type="button"
+                        onClick={() => onSelectTango && onSelectTango(w)}
+                        className="group inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-semibold bg-indigo-50/80 hover:bg-indigo-100 text-indigo-800 border border-indigo-200/80 transition-all cursor-pointer shadow-2xs"
+                        title={`Ver palabra «${w.kanji}» (${w.spanish}) en modo Vocabulario`}
+                      >
+                        <span className="font-japanese text-xs">{w.kanji}</span>
+                        <span className="text-[10px] text-indigo-500">({w.reading})</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

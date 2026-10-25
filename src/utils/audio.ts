@@ -1,36 +1,12 @@
-/**
- * Audio helper for Japanese SpeechSynthesis and UI sound feedback using Web Audio API
- */
-
-export function speakJapanese(text: string): void {
-  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-
-  try {
-    window.speechSynthesis.cancel(); // Stop any pending speech
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'ja-JP';
-    utterance.rate = 0.85; // Slightly slower for language learners
-
-    // Find a Japanese voice if available
-    const voices = window.speechSynthesis.getVoices();
-    const jaVoice = voices.find((v) => v.lang.startsWith('ja') || v.lang.includes('JP'));
-    if (jaVoice) {
-      utterance.voice = jaVoice;
-    }
-
-    window.speechSynthesis.speak(utterance);
-  } catch (err) {
-    console.warn('SpeechSynthesis error:', err);
-  }
-}
-
 // Subtle sound effects using Web Audio API
 let audioCtx: AudioContext | null = null;
 
 function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
   if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const AudioContextClass =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (AudioContextClass) {
       audioCtx = new AudioContextClass();
     }
@@ -113,5 +89,30 @@ export function playChime(): void {
     });
   } catch {
     // Ignore
+  }
+}
+
+/**
+ * Web Speech API for natural Japanese pronunciation.
+ */
+export function speakJapanese(text: string): void {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window) || !text) return;
+
+  try {
+    window.speechSynthesis.cancel(); // Stop any pending speech
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ja-JP';
+    utterance.rate = 0.85; // Slightly slower for language learners
+
+    // Find a Japanese voice if available
+    const voices = window.speechSynthesis.getVoices();
+    const jaVoice = voices.find((v) => v.lang.startsWith('ja') || v.lang.includes('JP'));
+    if (jaVoice) {
+      utterance.voice = jaVoice;
+    }
+
+    window.speechSynthesis.speak(utterance);
+  } catch (err) {
+    console.warn('SpeechSynthesis error:', err);
   }
 }
