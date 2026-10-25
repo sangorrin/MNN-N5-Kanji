@@ -179,7 +179,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
               : 'text-slate-600 hover:text-slate-900'
           }`}
         >
-          Imi (Significado)
+          Imi
         </button>
         <button
           onClick={() => {
@@ -192,7 +192,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
               : 'text-slate-600 hover:text-slate-900'
           }`}
         >
-          Hatsuon (Lectura On/Kun)
+          Hatsuon
         </button>
         <button
           onClick={() => {
@@ -205,7 +205,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
               : 'text-slate-600 hover:text-slate-900'
           }`}
         >
-          Tango (Vocabulario)
+          Tango
         </button>
         <button
           onClick={() => {
@@ -218,7 +218,7 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
               : 'text-slate-600 hover:text-slate-900'
           }`}
         >
-          Sentensu (Frases)
+          Sentensu
         </button>
       </div>
 

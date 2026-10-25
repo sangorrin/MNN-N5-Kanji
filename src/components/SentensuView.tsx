@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Volume2, BookOpen, ToggleLeft, ToggleRight, Sparkles, ArrowRight } from 'lucide-react';
+import { Volume2, BookOpen, ToggleLeft, ToggleRight, Sparkles, ArrowRight, Search, X } from 'lucide-react';
 import { SentenceItem, MNN_SENTENCES } from '../data/sentences';
 import { LessonGroup } from '../data/types';
 import { getKanjiByLesson } from '../data';
@@ -19,12 +19,27 @@ export const SentensuView: React.FC<SentensuViewProps> = ({
 }) => {
   const [showFurigana, setShowFurigana] = useState<boolean>(true);
   const [playingId, setPlayingId] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Filter sentences for the active lesson
-  const sentences = useMemo(() => {
+  const rawSentences = useMemo(() => {
     if (currentLesson.id === 'all') return MNN_SENTENCES;
     return MNN_SENTENCES.filter((s) => s.lessonId === currentLesson.id);
   }, [currentLesson.id]);
+
+  const sentences = useMemo(() => {
+    if (!searchQuery.trim()) return rawSentences;
+    const q = searchQuery.toLowerCase().trim();
+    return rawSentences.filter((s) => {
+      return (
+        s.japaneseText.toLowerCase().includes(q) ||
+        s.romaji.toLowerCase().includes(q) ||
+        s.spanish.toLowerCase().includes(q) ||
+        (s.targetKanji && s.targetKanji.some((k) => k.includes(q))) ||
+        s.segments.some((seg) => seg.text.includes(q) || (seg.furigana && seg.furigana.includes(q)))
+      );
+    });
+  }, [rawSentences, searchQuery]);
 
   const lessonKanji = useMemo(() => {
     return new Set(getKanjiByLesson(currentLesson.id).map((item) => item.kanji));
@@ -43,7 +58,7 @@ export const SentensuView: React.FC<SentensuViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto space-y-6">
+    <div className="w-full max-w-3xl mx-auto space-y-5">
       {/* Header bar for Sentensu mode */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/80 backdrop-blur-xs p-4 rounded-2xl border border-slate-200/80 shadow-2xs">
         <div className="flex items-center gap-3">
@@ -86,12 +101,36 @@ export const SentensuView: React.FC<SentensuViewProps> = ({
         </div>
       </div>
 
+      {/* Search Input Filter */}
+      <div className="relative max-w-md">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Buscar frase, kanji, palabra, español o romaji..."
+          className="w-full bg-white border border-slate-200/90 rounded-2xl py-2 pl-9 pr-8 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-400 shadow-2xs"
+        />
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+          <Search size={15} />
+        </div>
+        {searchQuery && (
+          <button
+            onClick={() => setSearchQuery('')}
+            className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600"
+          >
+            <X size={14} />
+          </button>
+        )}
+      </div>
+
       {/* Empty State */}
       {sentences.length === 0 && (
         <div className="p-8 text-center bg-white rounded-2xl border border-dashed border-slate-200">
           <BookOpen className="w-10 h-10 text-slate-300 mx-auto mb-2" />
           <p className="text-sm text-slate-600 font-medium">
-            No hay oraciones registradas para esta lección aún.
+            {searchQuery
+              ? `No se encontraron oraciones para «${searchQuery}»`
+              : 'No hay oraciones registradas para esta lección aún.'}
           </p>
         </div>
       )}
@@ -209,18 +248,25 @@ export const SentensuView: React.FC<SentensuViewProps> = ({
                     ))}
 
                     {/* Vocabulario (Tango) Chips */}
-                    {matchingWords.map((w) => (
-                      <button
-                        key={w.id}
-                        type="button"
-                        onClick={() => onSelectTango && onSelectTango(w)}
-                        className="group inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-semibold bg-indigo-50/80 hover:bg-indigo-100 text-indigo-800 border border-indigo-200/80 transition-all cursor-pointer shadow-2xs"
-                        title={`Ver palabra «${w.kanji}» (${w.spanish}) en modo Vocabulario`}
-                      >
-                        <span className="font-japanese text-xs">{w.kanji}</span>
-                        <span className="text-[10px] text-indigo-500">({w.reading})</span>
-                      </button>
-                    ))}
+                    {matchingWords.map((w) => {
+                      const hasKanji = /[\u4e00-\u9faf]/.test(w.kanji);
+                      const showYomigana = hasKanji && Boolean(w.reading) && w.reading !== w.kanji;
+
+                      return (
+                        <button
+                          key={w.id}
+                          type="button"
+                          onClick={() => onSelectTango && onSelectTango(w)}
+                          className="group inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-semibold bg-indigo-50/80 hover:bg-indigo-100 text-indigo-800 border border-indigo-200/80 transition-all cursor-pointer shadow-2xs"
+                          title={`Ver palabra «${w.kanji}» (${w.spanish}) en modo Vocabulario`}
+                        >
+                          <span className="font-japanese text-xs">{w.kanji}</span>
+                          {showYomigana && (
+                            <span className="text-[10px] text-indigo-500">({w.reading})</span>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               )}

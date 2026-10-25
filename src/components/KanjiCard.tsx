@@ -68,13 +68,21 @@ export const KanjiCard: React.FC<KanjiCardProps> = ({
   };
 
   return (
-    <button
+    <div
+      role="button"
+      tabIndex={0}
       onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
       style={{
         backgroundColor: style.backgroundColor,
         borderColor: isSelected ? style.accentColor : style.borderColor,
       }}
-      className={`group relative flex flex-col items-center justify-between p-2 sm:p-3 aspect-square rounded-2xl border-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-rose-400 select-none ${
+      className={`group relative flex flex-col items-center justify-between p-2 sm:p-3 aspect-square rounded-2xl border-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-rose-400 select-none cursor-pointer ${
         isSelected ? 'ring-2 ring-rose-400 shadow-md' : 'shadow-xs'
       }`}
     >
@@ -94,8 +102,9 @@ export const KanjiCard: React.FC<KanjiCardProps> = ({
         </span>
 
         <button
+          type="button"
           onClick={handleAudio}
-          className="p-0.5 sm:p-1 rounded-md text-slate-400 hover:text-slate-800 opacity-60 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+          className="p-0.5 sm:p-1 rounded-md text-slate-400 hover:text-slate-800 opacity-60 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity cursor-pointer"
           title="Escuchar pronunciación"
           aria-label="Escuchar pronunciación"
         >
@@ -124,6 +133,6 @@ export const KanjiCard: React.FC<KanjiCardProps> = ({
           <span>{kanji.strokes} tr.</span>
         </div>
       </div>
-    </button>
+    </div>
   );
 };

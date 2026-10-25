@@ -133,6 +133,7 @@ export default function App() {
       setSelectedLessonId(word.lessonId);
     }
     setHighlightWordId(word.id);
+    setSelectedKanji(null);
     setCurrentMode('tango');
   };
 
@@ -215,6 +216,8 @@ export default function App() {
             onNextKanji={handleNextKanji}
             hasPrev={currentKanjiIndex > 0}
             hasNext={currentKanjiIndex < displayedKanji.length - 1}
+            onSelectKanji={handleSelectKanjiByChar}
+            onSelectTango={handleSelectTango}
           />
         ) : (
           <>

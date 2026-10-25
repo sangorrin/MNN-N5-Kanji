@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { KanjiItem } from '../data/types';
-import { getKanjiHex, ALL_KANJI } from '../data';
+import { KanjiItem, VocabularyItem } from '../data/types';
+import { getKanjiHex, ALL_KANJI, KANJI_BY_CHAR, MNN_VOCABULARY } from '../data';
 import { MNN_SENTENCES } from '../data/sentences';
 import { KanjiSvgPlayer } from './KanjiSvgPlayer';
 import { PracticeCanvas } from './PracticeCanvas';
 import {
   ArrowLeft,
+  ArrowRight,
   Volume2,
   ExternalLink,
   ChevronLeft,
@@ -14,6 +15,7 @@ import {
   Film,
   Star,
   CheckCircle2,
+  Sparkles,
 } from 'lucide-react';
 import { speakJapanese, playSoftClick } from '../utils/audio';
 
@@ -28,6 +30,8 @@ interface KanjiDetailViewProps {
   onNextKanji?: () => void;
   hasPrev?: boolean;
   hasNext?: boolean;
+  onSelectKanji?: (kanjiChar: string) => void;
+  onSelectTango?: (word: VocabularyItem) => void;
 }
 
 export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
@@ -41,6 +45,8 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
   onNextKanji,
   hasPrev,
   hasNext,
+  onSelectKanji,
+  onSelectTango,
 }) => {
   const [activeTab, setActiveTab] = useState<'svg' | 'draw'>('svg');
   const hex = getKanjiHex(kanji.kanji);
@@ -247,38 +253,104 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {kanji.examples.map((item, idx) => (
-              <div
-                key={idx}
-                className="group p-3.5 rounded-2xl bg-slate-50 hover:bg-slate-100/70 border border-slate-200/60 transition-colors flex items-start justify-between gap-3"
-              >
-                <div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-lg font-serif font-bold text-slate-900">
-                      {item.kanji}
-                    </span>
-                    <span className="text-xs text-rose-600 font-medium">
-                      {item.reading}
-                    </span>
-                  </div>
-                  <div className="text-xs font-mono text-slate-400 mt-0.5">
-                    {item.romaji}
-                  </div>
-                  <div className="text-xs font-medium text-slate-700 mt-1">
-                    {item.meaning}
-                  </div>
-                </div>
+            {kanji.examples.map((item, idx) => {
+              // Extract all kanji characters present in this example word
+              const kanjiInWord = Array.from(new Set(item.kanji.match(/[\u4e00-\u9faf]/g) || []));
 
-                <button
-                  onClick={() => handleAudioWord(item.reading || item.kanji)}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-white transition-colors"
-                  title={`Escuchar "${item.kanji}"`}
-                  aria-label={`Escuchar ${item.kanji}`}
+              // Find if this word is also registered in MNN_VOCABULARY
+              const matchedVocab = MNN_VOCABULARY.find(
+                (v) => v.kanji === item.kanji || (v.reading === item.reading && v.spanish === item.meaning)
+              );
+
+              return (
+                <div
+                  key={idx}
+                  className="group p-3.5 rounded-2xl bg-slate-50 hover:bg-slate-100/70 border border-slate-200/60 transition-colors flex flex-col justify-between gap-2.5"
                 >
-                  <Volume2 size={15} />
-                </button>
-              </div>
-            ))}
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-lg font-serif font-bold text-slate-900">
+                          {item.kanji}
+                        </span>
+                        <span className="text-xs text-rose-600 font-medium">
+                          {item.reading}
+                        </span>
+                      </div>
+                      <div className="text-xs font-mono text-slate-400 mt-0.5">
+                        {item.romaji}
+                      </div>
+                      <div className="text-xs font-medium text-slate-700 mt-1">
+                        {item.meaning}
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => handleAudioWord(item.reading || item.kanji)}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-white transition-colors shrink-0"
+                      title={`Escuchar "${item.kanji}"`}
+                      aria-label={`Escuchar ${item.kanji}`}
+                    >
+                      <Volume2 size={15} />
+                    </button>
+                  </div>
+
+                  {/* Kanji links in example word (e.g. 教師 links to 師 and 教) */}
+                  {kanjiInWord.length > 0 && (
+                    <div className="pt-2 border-t border-slate-200/70 flex flex-wrap items-center gap-1.5 mt-1">
+                      <span className="text-[10px] font-semibold text-slate-400 mr-0.5 flex items-center gap-0.5">
+                        <Sparkles size={10} className="text-amber-500" />
+                        Kanji:
+                      </span>
+                      {kanjiInWord.map((k) => {
+                        const isCurrent = k === kanji.kanji;
+                        const hasKanjiData = KANJI_BY_CHAR.has(k);
+                        return (
+                          <button
+                            key={k}
+                            type="button"
+                            onClick={() => hasKanjiData && onSelectKanji && onSelectKanji(k)}
+                            disabled={!hasKanjiData}
+                            className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded-lg text-xs font-bold transition-all shadow-2xs ${
+                              isCurrent
+                                ? 'bg-rose-50 text-rose-700 border border-rose-200 cursor-default font-bold'
+                                : hasKanjiData
+                                ? 'bg-white hover:bg-rose-50 text-slate-700 hover:text-rose-700 border border-slate-200 hover:border-rose-200 cursor-pointer'
+                                : 'bg-slate-100 text-slate-400 border border-slate-200 opacity-60 cursor-not-allowed'
+                            }`}
+                            title={
+                              isCurrent
+                                ? `Kanji actual (${k})`
+                                : hasKanjiData
+                                ? `Ver tarjeta del kanji ${k}`
+                                : `Kanji ${k} (no contemplado)`
+                            }
+                          >
+                            <span className="font-japanese">{k}</span>
+                            {!isCurrent && hasKanjiData && (
+                              <ArrowRight size={10} className="text-slate-400 group-hover:text-rose-600" />
+                            )}
+                          </button>
+                        );
+                      })}
+
+                      {/* Optional shortcut to vocabulary word card if present in MNN_VOCABULARY */}
+                      {matchedVocab && onSelectTango && (
+                        <button
+                          type="button"
+                          onClick={() => onSelectTango(matchedVocab)}
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200/80 transition-colors ml-auto cursor-pointer shadow-2xs"
+                          title={`Ver palabra en modo Vocabulario (Lección ${matchedVocab.lessonId})`}
+                        >
+                          <span>Tango</span>
+                          <ArrowRight size={10} />
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -302,54 +374,119 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
               </div>
 
               <div className="space-y-3">
-                {sentences.map((s) => (
-                  <div
-                    key={s.id}
-                    className="p-4 rounded-2xl bg-amber-50/40 border border-amber-200/60 flex items-start justify-between gap-3"
-                  >
-                    <div className="space-y-1">
-                      <div className="text-xs font-semibold text-rose-700">
-                        {s.lessonNumber} · {s.section}
-                      </div>
-                      <div className="text-base sm:text-lg font-medium text-slate-900 font-japanese flex flex-wrap items-end gap-y-1">
-                        {s.segments.map((seg, sIdx) => {
-                          if (seg.furigana) {
-                            return (
-                              <ruby
-                                key={sIdx}
-                                className="inline-flex flex-col items-center justify-end align-bottom mx-[2px] leading-none"
-                              >
-                                <rt className="text-[10px] text-rose-600 font-normal leading-none pb-0.5 select-none text-center block">
-                                  {seg.furigana}
-                                </rt>
-                                <span className="leading-tight">{seg.text}</span>
-                              </ruby>
-                            );
-                          }
-                          return (
-                            <span key={sIdx} className="leading-tight">
-                              {seg.text}
-                            </span>
-                          );
-                        })}
-                      </div>
-                      <div className="text-xs text-slate-500 italic">{s.romaji}</div>
-                      <div className="text-xs sm:text-sm text-slate-700 font-medium">
-                        {s.spanish}
-                      </div>
-                    </div>
+                {sentences.map((s) => {
+                  const validKanji = [...new Set(s.targetKanji || [])].filter(
+                    (k) => KANJI_BY_CHAR.has(k) && s.japaneseText.includes(k)
+                  );
+                  const matchingWords = MNN_VOCABULARY.filter(
+                    (w) => w.kanji.length > 0 && s.japaneseText.includes(w.kanji)
+                  );
 
-                    <button
-                      onClick={() => {
-                        speakJapanese(s.japaneseText);
-                      }}
-                      className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-white transition-colors shrink-0"
-                      title="Pronunciación"
+                  return (
+                    <div
+                      key={s.id}
+                      className="p-4 rounded-2xl bg-amber-50/40 border border-amber-200/60 flex flex-col justify-between gap-3"
                     >
-                      <Volume2 size={16} />
-                    </button>
-                  </div>
-                ))}
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="space-y-1">
+                          <div className="text-xs font-semibold text-rose-700">
+                            {s.lessonNumber} · {s.section}
+                          </div>
+                          <div className="text-base sm:text-lg font-medium text-slate-900 font-japanese flex flex-wrap items-end gap-y-1">
+                            {s.segments.map((seg, sIdx) => {
+                              if (seg.furigana) {
+                                return (
+                                  <ruby
+                                    key={sIdx}
+                                    className="inline-flex flex-col items-center justify-end align-bottom mx-[2px] leading-none"
+                                  >
+                                    <rt className="text-[10px] text-rose-600 font-normal leading-none pb-0.5 select-none text-center block">
+                                      {seg.furigana}
+                                    </rt>
+                                    <span className="leading-tight">{seg.text}</span>
+                                  </ruby>
+                                );
+                              }
+                              return (
+                                <span key={sIdx} className="leading-tight">
+                                  {seg.text}
+                                </span>
+                              );
+                            })}
+                          </div>
+                          <div className="text-xs text-slate-500 italic">{s.romaji}</div>
+                          <div className="text-xs sm:text-sm text-slate-700 font-medium">
+                            {s.spanish}
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            speakJapanese(s.japaneseText);
+                          }}
+                          className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-white transition-colors shrink-0"
+                          title="Pronunciación"
+                        >
+                          <Volume2 size={16} />
+                        </button>
+                      </div>
+
+                      {/* Kanji y vocabulario de la lección chips */}
+                      {(validKanji.length > 0 || matchingWords.length > 0) && (
+                        <div className="pt-2.5 border-t border-amber-200/50 flex flex-wrap items-center gap-1.5">
+                          <span className="text-[11px] font-semibold text-slate-500 mr-1 flex items-center gap-1">
+                            <Sparkles size={11} className="text-amber-500" />
+                            Kanji y vocabulario:
+                          </span>
+
+                          {/* Kanji Chips */}
+                          {validKanji.map((k) => (
+                            <button
+                              key={k}
+                              type="button"
+                              onClick={() => onSelectKanji && onSelectKanji(k)}
+                              className={`group inline-flex items-center gap-1 px-2.5 py-0.5 rounded-xl text-xs font-bold border transition-all cursor-pointer shadow-2xs ${
+                                k === kanji.kanji
+                                  ? 'bg-rose-100 text-rose-800 border-rose-300'
+                                  : 'bg-white hover:bg-rose-50 text-slate-700 hover:text-rose-700 border-amber-200/80 hover:border-rose-200'
+                              }`}
+                              title={`Ver tarjeta del kanji ${k}`}
+                            >
+                              <span className="font-japanese text-sm">{k}</span>
+                              {k !== kanji.kanji && (
+                                <ArrowRight
+                                  size={11}
+                                  className="text-slate-400 group-hover:text-rose-600 transition-transform group-hover:translate-x-0.5"
+                                />
+                              )}
+                            </button>
+                          ))}
+
+                          {/* Vocabulario (Tango) Chips */}
+                          {matchingWords.map((w) => {
+                            const hasKanji = /[\u4e00-\u9faf]/.test(w.kanji);
+                            const showYomigana = hasKanji && Boolean(w.reading) && w.reading !== w.kanji;
+
+                            return (
+                              <button
+                                key={w.id}
+                                type="button"
+                                onClick={() => onSelectTango && onSelectTango(w)}
+                                className="group inline-flex items-center gap-1 px-2.5 py-0.5 rounded-xl text-xs font-semibold bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200/80 transition-all cursor-pointer shadow-2xs"
+                                title={`Ver palabra «${w.kanji}» (${w.spanish}) en modo Vocabulario`}
+                              >
+                                <span className="font-japanese text-xs">{w.kanji}</span>
+                                {showYomigana && (
+                                  <span className="text-[10px] text-indigo-500">({w.reading})</span>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           );
