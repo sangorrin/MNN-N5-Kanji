@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Volume2, BookOpen, ToggleLeft, ToggleRight, Sparkles, ArrowRight, Search, X } from 'lucide-react';
 import { VocabularyItem, getVocabularyByLesson } from '../data/vocabulary';
 import { LessonGroup } from '../data/types';
@@ -19,6 +19,7 @@ export const TangoView: React.FC<TangoViewProps> = ({
   const [showFurigana, setShowFurigana] = useState<boolean>(true);
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const wordRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   // Get vocabulary items for active lesson
   const rawWords = useMemo(() => {
@@ -42,6 +43,19 @@ export const TangoView: React.FC<TangoViewProps> = ({
         w.spanish.toLowerCase().includes(q)
     );
   }, [rawWords, searchQuery]);
+
+  useEffect(() => {
+    if (!highlightWordId) return;
+
+    const frame = requestAnimationFrame(() => {
+      wordRefs.current[highlightWordId]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [highlightWordId, currentLesson.id, words.length]);
 
   const handlePlayWord = (word: VocabularyItem) => {
     setPlayingId(word.id);
@@ -139,6 +153,9 @@ export const TangoView: React.FC<TangoViewProps> = ({
           return (
             <div
               key={w.id}
+              ref={(element) => {
+                wordRefs.current[w.id] = element;
+              }}
               className={`bg-white rounded-2xl p-4 border transition-all flex flex-col justify-between ${
                 isHighlighted
                   ? 'border-rose-400 ring-2 ring-rose-300/60 shadow-md bg-rose-50/20'
