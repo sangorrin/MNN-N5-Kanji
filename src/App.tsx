@@ -26,12 +26,59 @@ import {
 } from 'lucide-react';
 import { playSoftClick } from './utils/audio';
 
+const STUDY_MODES: StudyMode[] = ['kanji', 'flashcards', 'sentensu', 'tango', 'bunpo', 'ref'];
+
+interface NavigationState {
+  lessonId: string;
+  mode: StudyMode;
+  selectedKanjiId: number | null;
+  wordId: string | null;
+  grammarId: string | null;
+}
+
+function readNavigationState(): NavigationState {
+  const params = new URLSearchParams(window.location.search);
+  const modeParam = params.get('mode');
+  const mode = STUDY_MODES.includes(modeParam as StudyMode)
+    ? (modeParam as StudyMode)
+    : 'kanji';
+  const selectedKanjiId = Number(params.get('kanji'));
+
+  return {
+    lessonId: params.get('lesson') || 'pre',
+    mode,
+    selectedKanjiId: Number.isInteger(selectedKanjiId) && selectedKanjiId > 0 ? selectedKanjiId : null,
+    wordId: params.get('word'),
+    grammarId: params.get('grammar'),
+  };
+}
+
+function navigationUrl(state: NavigationState): string {
+  const url = new URL(window.location.href);
+  url.search = '';
+  url.searchParams.set('lesson', state.lessonId);
+  url.searchParams.set('mode', state.mode);
+
+  if (state.selectedKanjiId !== null) url.searchParams.set('kanji', String(state.selectedKanjiId));
+  if (state.wordId) url.searchParams.set('word', state.wordId);
+  if (state.grammarId) url.searchParams.set('grammar', state.grammarId);
+
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
 export default function App() {
-  const [selectedLessonId, setSelectedLessonId] = useState<string>('pre');
-  const [currentMode, setCurrentMode] = useState<StudyMode>('kanji');
-  const [selectedKanji, setSelectedKanji] = useState<KanjiItem | null>(null);
-  const [highlightWordId, setHighlightWordId] = useState<string | null>(null);
-  const [highlightGrammarId, setHighlightGrammarId] = useState<string | null>(null);
+  const initialNavigationState = readNavigationState();
+  const [selectedLessonId, setSelectedLessonId] = useState<string>(initialNavigationState.lessonId);
+  const [currentMode, setCurrentMode] = useState<StudyMode>(initialNavigationState.mode);
+  const [selectedKanji, setSelectedKanji] = useState<KanjiItem | null>(
+    initialNavigationState.selectedKanjiId
+      ? ALL_KANJI.find((kanji) => kanji.id === initialNavigationState.selectedKanjiId) || null
+      : null
+  );
+  const [highlightWordId, setHighlightWordId] = useState<string | null>(initialNavigationState.wordId);
+  const [highlightGrammarId, setHighlightGrammarId] = useState<string | null>(
+    initialNavigationState.grammarId
+  );
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [studyCounts, setStudyCounts] = useState<Record<number, number>>({});
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -39,13 +86,70 @@ export default function App() {
   const [pastelHue, setPastelHue] = useState<'sakura' | 'matcha' | 'lavender' | 'sky'>('sakura');
   const [showTermsModal, setShowTermsModal] = useState<boolean>(false);
   const [showResetConfirm, setShowResetConfirm] = useState<boolean>(false);
-  const [returnToMode, setReturnToMode] = useState<StudyMode | null>(null);
 
   // Initialize from localStorage
   useEffect(() => {
     setStudyCounts(getStudyCounts());
     setFavorites(getFavorites());
   }, []);
+
+  // Keep the current view addressable and respond to browser back/forward.
+  useEffect(() => {
+    const state = readNavigationState();
+    window.history.replaceState({ mnnNavigation: state }, '', navigationUrl(state));
+
+    const handlePopState = () => {
+      const nextState = readNavigationState();
+      setSelectedLessonId(nextState.lessonId);
+      setCurrentMode(nextState.mode);
+      setSelectedKanji(
+        nextState.selectedKanjiId
+          ? ALL_KANJI.find((kanji) => kanji.id === nextState.selectedKanjiId) || null
+          : null
+      );
+      setHighlightWordId(nextState.wordId);
+      setHighlightGrammarId(nextState.grammarId);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateTo = (changes: Partial<NavigationState>, replace = false) => {
+    const nextState: NavigationState = {
+      lessonId: changes.lessonId ?? selectedLessonId,
+      mode: changes.mode ?? currentMode,
+      selectedKanjiId: changes.selectedKanjiId === undefined
+        ? selectedKanji?.id || null
+        : changes.selectedKanjiId,
+      wordId: changes.wordId === undefined ? highlightWordId : changes.wordId,
+      grammarId: changes.grammarId === undefined ? highlightGrammarId : changes.grammarId,
+    };
+
+    setSelectedLessonId(nextState.lessonId);
+    setCurrentMode(nextState.mode);
+    setSelectedKanji(
+      nextState.selectedKanjiId
+        ? ALL_KANJI.find((kanji) => kanji.id === nextState.selectedKanjiId) || null
+        : null
+    );
+    setHighlightWordId(nextState.wordId);
+    setHighlightGrammarId(nextState.grammarId);
+    window.history[replace ? 'replaceState' : 'pushState'](
+      { mnnNavigation: nextState },
+      '',
+      navigationUrl(nextState)
+    );
+  };
+
+  const handleBackFromKanji = () => {
+    if (window.history.state?.mnnNavigation?.selectedKanjiId !== undefined) {
+      window.history.back();
+      return;
+    }
+
+    navigateTo({ mode: 'kanji', selectedKanjiId: null, wordId: null, grammarId: null }, true);
+  };
 
   // Filter kanji according to lesson, search, and favorites
   const lessonKanji = useMemo(() => {
@@ -106,7 +210,13 @@ export default function App() {
   const handleSelectKanji = (kanji: KanjiItem) => {
     const updatedCount = incrementStudyCount(kanji.id);
     setStudyCounts((prev) => ({ ...prev, [kanji.id]: updatedCount }));
-    setSelectedKanji(kanji);
+    navigateTo({
+      lessonId: kanji.lessonId,
+      mode: 'kanji',
+      selectedKanjiId: kanji.id,
+      wordId: null,
+      grammarId: null,
+    });
   };
 
   // Toggle Favorite
@@ -119,35 +229,30 @@ export default function App() {
   const handleSelectKanjiByChar = (char: string) => {
     const found = ALL_KANJI.find((k) => k.kanji === char);
     if (found) {
-      if (currentMode !== 'kanji') {
-        setReturnToMode(currentMode);
-        setCurrentMode('kanji');
-      }
-      if (selectedLessonId !== 'all' && found.lessonId !== selectedLessonId) {
-        setSelectedLessonId(found.lessonId);
-      }
       handleSelectKanji(found);
     }
   };
 
   // Select tango word from Sentensu or elsewhere
   const handleSelectTango = (word: VocabularyItem) => {
-    if (selectedLessonId !== 'all' && word.lessonId !== selectedLessonId) {
-      setSelectedLessonId(word.lessonId);
-    }
-    setHighlightWordId(word.id);
-    setSelectedKanji(null);
-    setCurrentMode('tango');
+    navigateTo({
+      lessonId: word.lessonId,
+      mode: 'tango',
+      selectedKanjiId: null,
+      wordId: word.id,
+      grammarId: null,
+    });
   };
 
   // Select grammar point from Sentensu or elsewhere
   const handleSelectGrammar = (grammarId: string, lessonId?: string) => {
-    if (lessonId && selectedLessonId !== 'all' && lessonId !== selectedLessonId) {
-      setSelectedLessonId(lessonId);
-    }
-    setHighlightGrammarId(grammarId);
-    setSelectedKanji(null);
-    setCurrentMode('bunpo');
+    navigateTo({
+      lessonId: lessonId || selectedLessonId,
+      mode: 'bunpo',
+      selectedKanjiId: null,
+      wordId: null,
+      grammarId,
+    });
   };
 
   // Reset lesson study progress
@@ -170,7 +275,7 @@ export default function App() {
       playSoftClick();
       const updatedCount = incrementStudyCount(nextKanji.id);
       setStudyCounts((prev) => ({ ...prev, [nextKanji.id]: updatedCount }));
-      setSelectedKanji(nextKanji);
+      navigateTo({ selectedKanjiId: nextKanji.id, wordId: null, grammarId: null });
     }
   };
 
@@ -180,7 +285,7 @@ export default function App() {
       playSoftClick();
       const updatedCount = incrementStudyCount(nextKanji.id);
       setStudyCounts((prev) => ({ ...prev, [nextKanji.id]: updatedCount }));
-      setSelectedKanji(nextKanji);
+      navigateTo({ selectedKanjiId: nextKanji.id, wordId: null, grammarId: null });
     }
   };
 
@@ -196,8 +301,12 @@ export default function App() {
       <Header
         currentMode={currentMode}
         onSelectMode={(mode) => {
-          setSelectedKanji(null);
-          setCurrentMode(mode);
+          navigateTo({
+            mode,
+            selectedKanjiId: null,
+            wordId: null,
+            grammarId: null,
+          });
         }}
         onOpenTerms={() => setShowTermsModal(true)}
         onlyFavorites={onlyFavorites}
@@ -219,11 +328,7 @@ export default function App() {
             isFavorite={favorites.includes(selectedKanji.id)}
             onToggleFavorite={handleToggleFavorite}
             onBack={() => {
-              setSelectedKanji(null);
-              if (returnToMode) {
-                setCurrentMode(returnToMode);
-                setReturnToMode(null);
-              }
+              handleBackFromKanji();
             }}
             onPrevKanji={handlePrevKanji}
             onNextKanji={handleNextKanji}
@@ -239,8 +344,12 @@ export default function App() {
               <LessonSelector
                 selectedLessonId={selectedLessonId}
                 onSelectLesson={(id) => {
-                  setSelectedLessonId(id);
-                  setSelectedKanji(null);
+                  navigateTo({
+                    lessonId: id,
+                    selectedKanjiId: null,
+                    wordId: null,
+                    grammarId: null,
+                  });
                 }}
                 kanjiStudyCounts={studyCounts}
               />
@@ -353,10 +462,13 @@ export default function App() {
                 highlightGrammarId={highlightGrammarId}
                 onSelectKanji={handleSelectKanjiByChar}
                 onNavigateSentensu={(lessonId) => {
-                  if (lessonId && selectedLessonId !== 'all' && lessonId !== selectedLessonId) {
-                    setSelectedLessonId(lessonId);
-                  }
-                  setCurrentMode('sentensu');
+                  navigateTo({
+                    lessonId: lessonId || selectedLessonId,
+                    mode: 'sentensu',
+                    selectedKanjiId: null,
+                    wordId: null,
+                    grammarId: null,
+                  });
                 }}
               />
             ) : currentMode === 'ref' ? (
@@ -364,7 +476,12 @@ export default function App() {
                 currentLesson={currentLessonGroup}
                 onSelectKanji={handleSelectKanjiByChar}
                 onSelectLesson={(lessonId) => {
-                  setSelectedLessonId(lessonId);
+                  navigateTo({
+                    lessonId,
+                    selectedKanjiId: null,
+                    wordId: null,
+                    grammarId: null,
+                  });
                 }}
               />
             ) : (
