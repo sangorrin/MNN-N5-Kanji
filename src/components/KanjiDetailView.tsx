@@ -157,6 +157,7 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
           <div className="inline-flex p-1 bg-slate-100/90 rounded-xl mb-5">
             <button
               onClick={() => setActiveTab('svg')}
+              aria-label="Animación de trazos (KanjiVG)"
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 activeTab === 'svg'
                   ? 'bg-white text-slate-900 shadow-xs'
@@ -164,10 +165,10 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
               }`}
             >
               <Film size={14} />
-              <span>Animación de trazos (KanjiVG)</span>
             </button>
             <button
               onClick={() => setActiveTab('draw')}
+              aria-label="Lienzo para practicar trazo"
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 activeTab === 'draw'
                   ? 'bg-white text-slate-900 shadow-xs'
@@ -175,7 +176,6 @@ export const KanjiDetailView: React.FC<KanjiDetailViewProps> = ({
               }`}
             >
               <PenTool size={14} />
-              <span>Lienzo para practicar trazo</span>
             </button>
           </div>
 

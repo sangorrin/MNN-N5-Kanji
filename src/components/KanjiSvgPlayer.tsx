@@ -262,20 +262,11 @@ export const KanjiSvgPlayer: React.FC<KanjiSvgPlayerProps> = ({
           {/* Play / Pause */}
           <button
             onClick={handleTogglePlay}
-            className="px-3.5 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-colors flex items-center gap-1.5 text-xs font-medium shadow-xs"
+            className="p-2.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-colors flex items-center justify-center shadow-xs"
             title={isPlaying ? 'Pausar' : 'Reproducir'}
+            aria-label={isPlaying ? 'Pausar' : 'Animar'}
           >
-            {isPlaying ? (
-              <>
-                <Pause size={14} />
-                <span>Pausa</span>
-              </>
-            ) : (
-              <>
-                <Play size={14} />
-                <span>Animar</span>
-              </>
-            )}
+            {isPlaying ? <Pause size={14} /> : <Play size={14} />}
           </button>
 
           {/* Step forward */}

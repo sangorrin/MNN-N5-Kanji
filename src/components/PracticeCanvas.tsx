@@ -157,8 +157,8 @@ export const PracticeCanvas: React.FC<PracticeCanvasProps> = ({ kanji, hex }) =>
 
   return (
     <div className="flex flex-col items-center w-full">
-      {/* Box container matches exact dimensions of KanjiSvgPlayer */}
-      <div className="relative w-64 h-64 sm:w-72 sm:h-72 bg-white rounded-3xl p-3 border border-slate-200/80 shadow-sm overflow-hidden touch-none select-none flex items-center justify-center">
+      {/* Larger touch-friendly surface for handwriting practice */}
+      <div className="relative w-[min(92vw,24rem)] h-[min(92vw,24rem)] sm:w-96 sm:h-96 bg-white rounded-3xl p-3 border border-slate-200/80 shadow-sm overflow-hidden touch-none select-none flex items-center justify-center">
         {/* Calligraphy Guideline Grid & KanjiVG Stroke Guide (1:1 with Animation) */}
         <svg
           viewBox="0 0 109 109"
@@ -241,7 +241,7 @@ export const PracticeCanvas: React.FC<PracticeCanvasProps> = ({ kanji, hex }) =>
       </div>
 
       {/* Canvas Actions & Controls */}
-      <div className="flex flex-wrap items-center justify-between w-64 sm:w-72 mt-3 px-1 gap-2 text-xs">
+      <div className="flex flex-wrap items-center justify-between w-[min(92vw,24rem)] sm:w-96 mt-3 px-1 gap-2 text-xs">
         <div className="flex items-center gap-1">
           <button
             onClick={handleUndo}
